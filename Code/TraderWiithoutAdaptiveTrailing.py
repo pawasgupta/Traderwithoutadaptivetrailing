@@ -12,7 +12,7 @@ class Trader:
     def __init__(self):         #constructor to initialise the members
 
         self.m_str_dbname='test_db1'    # Name of Database
-        self.m_str_DataTableName='data_tablePeriod1'    # name of Tick Data Table
+        self.m_str_DataTableName='DebugError'    # name of Tick Data Table
         self.m_str_ResultTableName='tbl_TrainingResultsPeriod1' # name of Results Table (Contains Date, Time, Position)
         self.m_str_SignalTableName='tbl_TrainingSignalsPeriod1' # name of Signal Table
         self.m_str_UserName='pawasgupta'     # username
@@ -388,12 +388,12 @@ class Trader:
             self.m_i_PositionInMarket=0
 
         if (self.m_i_Position[self.m_i_t-2]==1 and self.m_i_Position[self.m_i_t-1]==0 and self.m_i_TradeType==1 and self.m_i_PositionInMarket==1): #clear off your Long1 position (Case 11)
-            l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'buy',self.m_i_ShareQuantity, 'Long_Exit3')) #Write into DB
+            l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'sell',self.m_i_ShareQuantity, 'Long_Exit3')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
 
         if (self.m_i_Position[self.m_i_t-2]==1 and self.m_i_Position[self.m_i_t-1]==0 and self.m_i_TradeType==2 and self.m_i_PositionInMarket==1): #clear off Long2 your position (Case 12)
-            l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'buy',self.m_i_ShareQuantity, 'Long_Exit4')) #Write into DB
+            l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'sell',self.m_i_ShareQuantity, 'Long_Exit4')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
         l_cur.close()
@@ -494,6 +494,7 @@ while(l_i_loopvar==1):
         print "End time " + time.strftime("%X")
 
         l_i_loopvar=0
+        break
 
     else:
         l_i_TickNumber=l_i_TickNumber+1 # Increment tick number
