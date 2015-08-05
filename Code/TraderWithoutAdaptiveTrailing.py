@@ -12,10 +12,10 @@ class Trader:
     def __init__(self):         #constructor to initialise the members
 
         self.m_str_dbname='test_db1'    # Name of Database
-        self.m_str_DataTableName='data_tablePeriod2'    # name of Tick Data Table
-        self.m_str_ResultTableName='tbl_TrainingResultsPeriod2' # name of Results Table (Contains Date, Time, Position)
-        self.m_str_SignalTableName='tbl_TrainingSignalsPeriod2' # name of Signal Table
-        self.m_str_OHLCTableName='tbl_OHLCPeriod2' # name of Signal Table
+        self.m_str_DataTableName='data_tablePeriod3'    # name of Tick Data Table
+        self.m_str_ResultTableName='tbl_TrainingResultsPeriod3' # name of Results Table (Contains Date, Time, Position)
+        self.m_str_SignalTableName='tbl_TrainingSignalsPeriod3' # name of Signal Table
+        self.m_str_OHLCTableName='tbl_OHLCPeriod4' # name of Signal Table
 
         self.m_str_UserName='pawasgupta'     # username
         self.m_str_Password='@1234' # Password
@@ -24,6 +24,7 @@ class Trader:
         self.m_str_SessionCloseTime="17:00" # Session Close Time (Shoul have same format as Tick_Time in DataTable)
         self.m_i_t=0 # Time Instant or  Bar Count
         self.m_f_OHLCMatrix=[] # Contains Date,Time,O,H,L,C for Each bar
+        self.m_f_NonRoundedClose=[]
 
         #-----Parameters of my Algo------
         self.m_i_TradingWindowSize=80
@@ -42,7 +43,10 @@ class Trader:
         self.m_f_CumulativeProfit=[]    #Vector for Cumulative Postion for each 't'
         self.m_f_FeatureMatrix=[]   #Matrix for Features
         self.m_f_Returns=[] #MVector Storing Returns for each 't'
+        self.m_f_TrailPrice=0.0  # For Trailing
+        self.m_i_Trail=0 # for Trailing
 
+		
         self.m_i_TradeType=0    # variable for remarks for trades in Tradesheet
         self.m_i_ShareQuantity=10000 # Share Quantity
         self.m_i_PositionInMarket=0 # variable that stores current position in market
@@ -50,7 +54,7 @@ class Trader:
 
         self.m_i_RinaInternalFlag=1 # Flag used internally by Write2Rina module
         self.m_i_GenerateRina=1 # Make 0 if u dont want to write 2 Rina
-        self.m_str_RinaFileName="RinaCSVOutputPeriod2" # Rina File name
+        self.m_str_RinaFileName="RinaCSVOutputPeriod3" # Rina File name
         self.m_i_TradeNum=1 # Trade number Count
         self.m_str_EnterType='' # used internally by Write2Rina module
 
@@ -108,8 +112,8 @@ class Trader:
 
     def m_CreateRinatFile(self):
         fileid=open(self.m_str_RinaFileName,"w") # create file if it does not exist else flush the content
-        fileid.write('"Trade #","Date","Time","Signal","Price","Contracts","% Profit","Runup","Entry Eff","Total","System"\n')
-        fileid.write('"Type","Date","Time","Signal","Price","Profit","Cum Profit","Drawdown","Exit Eff","Eff","Market"\n')
+        fileid.write('"Trade #","Date","Time","Signal","Price","Contracts","% Profit","Runup","Entry Eff","Total","System"\r\n')
+        fileid.write('"Type","Date","Time","Signal","Price","Profit","Cum Profit","Drawdown","Exit Eff","Eff","Market"\r\n')
         fileid.close()
 
 
@@ -136,6 +140,9 @@ class Trader:
         self.m_i_t+=1 #increse Bar Count
         self.m_f_OHLCMatrix.append([])
         self.m_f_OHLCMatrix[self.m_i_t-1].extend([Date,Time,barOpen,barHigh,barLow,barClose])
+
+        self.m_f_NonRoundedClose.append([])
+        self.m_f_NonRoundedClose[self.m_i_t-1].append(float(l_TickMatrix[l_NumberOfTicks-1][5]))
 
         l_cur.execute("Insert into %s (Date,Time,Open,High,Low,Close) values('%s','%s','%s','%s','%s','%s');"%(TraderObject.m_str_OHLCTableName, str(Date), str(Time), barOpen, barHigh, barLow, barClose)) #Write into DB
         l_DbHandle.commit()
@@ -344,7 +351,7 @@ class Trader:
         l_str_BarDate=str(self.m_f_OHLCMatrix[self.m_i_t-1][0])
         l_str_BarTime=str(self.m_f_OHLCMatrix[self.m_i_t-1][1])
 
-        l_f_BarClosePrice=float(self.m_f_OHLCMatrix[self.m_i_t-1][5])
+        l_f_BarClosePrice=float(self.m_f_NonRoundedClose[self.m_i_t-1][0])
 
         l_DbHandle=self.m_login() #login into database
         l_cur=l_DbHandle.cursor()
@@ -369,11 +376,16 @@ class Trader:
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'sell',self.m_i_ShareQuantity, 'Long_Exit1')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
 
         if (self.m_i_Position[self.m_i_t-2]==1 and self.m_i_Position[self.m_i_t-1]==-1 and self.m_i_TradeType==2 and self.m_i_PositionInMarket==1):   #clear off your Long2 position (Case 4)
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'sell',self.m_i_ShareQuantity, 'Long_Exit2')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
+
 
         if (self.m_i_Position[self.m_i_t-2]==1 and self.m_i_Position[self.m_i_t-1]==-1 and self.m_i_PositionInMarket==0):    #Generate a Enter Short2 signal (Case 5)
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'sell',self.m_i_ShareQuantity, 'Enter_Short2')) #Write into DB
@@ -386,11 +398,17 @@ class Trader:
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'buy',self.m_i_ShareQuantity, 'Short_Exit1')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
+
 
         if (self.m_i_Position[self.m_i_t-2]==-1 and self.m_i_Position[self.m_i_t-1]==1 and self.m_i_TradeType==2 and self.m_i_PositionInMarket==-1):   #clear off your Short2 position (Case 7)
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'buy',self.m_i_ShareQuantity, 'Short_Exit2')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
+
 
         if (self.m_i_Position[self.m_i_t-2]==-1 and self.m_i_Position[self.m_i_t-1]==1 and self.m_i_PositionInMarket==0):    #Generate a EnterLong2 signal (Case 8)
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'buy',self.m_i_ShareQuantity, 'Enter_Long2')) #Write into DB
@@ -403,21 +421,33 @@ class Trader:
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'buy',self.m_i_ShareQuantity, 'Short_Exit3')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
+
 
         if (self.m_i_Position[self.m_i_t-2]==-1 and self.m_i_Position[self.m_i_t-1]==0 and self.m_i_TradeType==2 and self.m_i_PositionInMarket==-1): #clear off your Short2 position(Case 10)
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'buy',self.m_i_ShareQuantity, 'Short_Exit4')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
+
 
         if (self.m_i_Position[self.m_i_t-2]==1 and self.m_i_Position[self.m_i_t-1]==0 and self.m_i_TradeType==1 and self.m_i_PositionInMarket==1): #clear off your Long1 position (Case 11)
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'sell',self.m_i_ShareQuantity, 'Long_Exit3')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
+
 
         if (self.m_i_Position[self.m_i_t-2]==1 and self.m_i_Position[self.m_i_t-1]==0 and self.m_i_TradeType==2 and self.m_i_PositionInMarket==1): #clear off Long2 your position (Case 12)
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(self.m_str_SignalTableName, l_str_BarDate,l_str_BarTime, l_f_BarClosePrice,'sell',self.m_i_ShareQuantity, 'Long_Exit4')) #Write into DB
             l_DbHandle.commit()
             self.m_i_PositionInMarket=0
+            self.m_f_TrailPrice=0.0
+            self.m_i_Trail=0
+
         l_cur.close()
 
 
@@ -451,7 +481,7 @@ class Trader:
                     l_Entercontracts=SignalsRead[l_i_Counter][4]
                     l_Entersignalmame=SignalsRead[l_i_Counter][5]
                     #l_newenterdate=enterdate.replace('-','/')
-                    temp='"'+str(self.m_i_TradeNum)+'","'+l_Enterdate+'","'+l_Entertime+'","'+l_Entersignalmame+'","'+str(l_Enterprice)+'","'+str(l_Entercontracts)+'","'+str(l_i_PerProf)+'","'+str(l_i_RunUp)+'","'+str(l_i_EnterEff)+'","'+'","'+str(l_i_Tot)+'","'+str(l_str_System)+"\n"
+                    temp='"'+str(self.m_i_TradeNum)+'","'+l_Enterdate+'","'+l_Entertime+'","'+l_Entersignalmame+'","'+str(l_Enterprice)+'","'+str(l_Entercontracts)+'","'+str(l_i_PerProf)+'","'+str(l_i_RunUp)+'","'+str(l_i_EnterEff)+'","'+str(l_i_Tot)+'","'+str(l_str_System)+'"\r\n'
                     fileid.write(temp)
                     l_i_Counter=l_i_Counter+1
                     self.m_i_RinaInternalFlag=2 #Next Signal will correspond to Exit
@@ -465,10 +495,10 @@ class Trader:
                     l_Exitsignalname=SignalsRead[l_i_Counter][5]
 
                     #newexitdate=exitdate.replace('-','/')
-                    temp='"'+str(self.m_str_EnterType)+'","'+l_Exitdate+'","'+l_Exittime+'","'+l_Exitsignalname+'","'+str(l_Exitprice)+'","'+str(l_i_Profit)+'","'+str(l_i_CumProf)+'","'+str(l_i_DD)+'","'+str(l_i_ExitEff)+'","'+str(l_i_Eff)+'","'+l_str_Market+'\n'
+                    temp='"'+str(self.m_str_EnterType)+'","'+l_Exitdate+'","'+l_Exittime+'","'+l_Exitsignalname+'","'+str(l_Exitprice)+'","'+str(l_i_Profit)+'","'+str(l_i_CumProf)+'","'+str(l_i_DD)+'","'+str(l_i_ExitEff)+'","'+str(l_i_Eff)+'","'+l_str_Market+'"\r\n'
                     fileid.write(temp)
                     self.m_i_TradeNum=self.m_i_TradeNum+1 # Trade Complete
-                    l_i_Perprof=self.m_i_TradeNum
+                    l_i_PerProf=self.m_i_TradeNum
                     l_i_CumProf=self.m_i_TradeNum
                     l_i_Counter=l_i_Counter+1
                     self.m_i_RinaInternalFlag=1 # Next Signal will correspond to Entry
@@ -491,8 +521,6 @@ l_f_TickOpen=0.0
 l_f_TickHigh=0.0
 l_f_TickLow=0.0
 l_f_TickClose=0.0
-l_f_TrailPrice=0.0  # For Trailing
-l_i_Trail=0 # for Trailing
 l_TickDataMatrix=[[None for _ in range(6)] for _ in range (TraderObject.m_i_BarTimeInterval)] # Creating a matrix for tik data
 l_DbHandle=TraderObject.m_login() #login into database
 l_cur=l_DbHandle.cursor()
@@ -555,34 +583,34 @@ while(l_i_loopvar==1):
 
         #-------------------TRAILING-------------------------------------------------------
         #--------------Trailing long position----------------------------------------------
-        if (TraderObject.m_i_PositionInMarket==1 and l_i_Trail==1 and l_f_TickClose>=l_f_TrailPrice):    #trail is ON and market is going up (Follow Trail)
-            l_f_TrailPrice=l_f_TickClose
-        elif (TraderObject.m_i_PositionInMarket==1 and l_i_Trail==1 and l_f_TickClose<=l_f_TrailPrice-0.0035*l_f_TrailPrice): #trail is ON and market moved down (Trail Hit)
+        if (TraderObject.m_i_PositionInMarket==1 and TraderObject.m_i_Trail==1 and l_f_TickClose>=TraderObject.m_f_TrailPrice):    #trail is ON and market is going up (Follow Trail)
+            TraderObject.m_f_TrailPrice=l_f_TickClose
+        elif (TraderObject.m_i_PositionInMarket==1 and TraderObject.m_i_Trail==1 and l_f_TickClose<=TraderObject.m_f_TrailPrice-0.0035*TraderObject.m_f_TrailPrice): #trail is ON and market moved down (Trail Hit)
             TraderObject.m_i_PositionInMarket=0
-            l_i_Trail=0
-            l_f_TrailPrice=0.0
+            TraderObject.m_i_Trail=0
+            TraderObject.m_f_TrailPrice=0.0
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(TraderObject.m_str_SignalTableName, l_str_TickDate,l_str_TickTime, l_f_TickClose,'sell',TraderObject.m_i_ShareQuantity, 'Long_TL_Hit')) #Exit Trade
             l_DbHandle.commit()
 
-        elif(TraderObject.m_i_PositionInMarket==1 and l_i_Trail==0 and l_f_TickClose>=TraderObject.m_f_MarketEnterPrice+TraderObject.m_f_MarketEnterPrice*0.01):    # Trail  On
-            l_i_Trail=1
-            l_f_TrailPrice=l_f_TickClose
+        elif(TraderObject.m_i_PositionInMarket==1 and TraderObject.m_i_Trail==0 and l_f_TickClose>=TraderObject.m_f_MarketEnterPrice+TraderObject.m_f_MarketEnterPrice*0.01):    # Trail  On
+            TraderObject.m_i_Trail=1
+            TraderObject.m_f_TrailPrice=l_f_TickClose
     #-------------------------------------------------------------------------------------------
 
         #---------------------Trailing Short position-------------
-        if (TraderObject.m_i_PositionInMarket==-1 and l_i_Trail==-1 and l_f_TickClose<=l_f_TrailPrice):    #trail is ON and market is going down (Follow Trail)
-            l_f_TrailPrice=l_f_TickClose
-        elif (TraderObject.m_i_PositionInMarket==-1 and l_i_Trail==-1 and l_f_TickClose>=l_f_TrailPrice+0.0035*l_f_TrailPrice): #trail is ON and market moved up (Trail Hit)
+        if (TraderObject.m_i_PositionInMarket==-1 and TraderObject.m_i_Trail==-1 and l_f_TickClose<=TraderObject.m_f_TrailPrice):    #trail is ON and market is going down (Follow Trail)
+            TraderObject.m_f_TrailPrice=l_f_TickClose
+        elif (TraderObject.m_i_PositionInMarket==-1 and TraderObject.m_i_Trail==-1 and l_f_TickClose>=TraderObject.m_f_TrailPrice+0.0035*TraderObject.m_f_TrailPrice): #trail is ON and market moved up (Trail Hit)
             TraderObject.m_i_PositionInMarket=0
-            l_i_Trail=0
-            l_f_TrailPrice=0.0
+            TraderObject.m_i_Trail=0
+            TraderObject.m_f_TrailPrice=0.0
             l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(TraderObject.m_str_SignalTableName, l_str_TickDate,l_str_TickTime, l_f_TickClose,'buy',TraderObject.m_i_ShareQuantity, 'Short_TL_Hit')) # Exit Trade
             l_DbHandle.commit()
 
 
-        elif(TraderObject.m_i_PositionInMarket==-1 and l_i_Trail==0 and l_f_TickClose<=TraderObject.m_f_MarketEnterPrice-TraderObject.m_f_MarketEnterPrice*0.01):   # Trail On
-            l_i_Trail=-1
-            l_f_TrailPrice=l_f_TickClose
+        elif(TraderObject.m_i_PositionInMarket==-1 and TraderObject.m_i_Trail==0 and l_f_TickClose<=TraderObject.m_f_MarketEnterPrice-TraderObject.m_f_MarketEnterPrice*0.01):   # Trail On
+            TraderObject.m_i_Trail=-1
+            TraderObject.m_f_TrailPrice=l_f_TickClose
 
     #-----------------------------------------------------------------------------------------------------------------%
 
@@ -590,12 +618,16 @@ while(l_i_loopvar==1):
     #---------------for Long position-------------------%
     if ((TraderObject.m_i_PositionInMarket==1) and (l_f_TickClose<=(TraderObject.m_f_MarketEnterPrice-0.0025*TraderObject.m_f_MarketEnterPrice))):  # Stop Loss
         TraderObject.m_i_PositionInMarket=0
+        TraderObject.m_i_Trail=0
+        TraderObject.m_f_TrailPrice=0.0
         l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(TraderObject.m_str_SignalTableName, l_str_TickDate,l_str_TickTime, l_f_TickClose,'sell',TraderObject.m_i_ShareQuantity, 'Long_SL_Hit')) # Exit Trade
         l_DbHandle.commit()
 
     #---------------for short position------------------%
     if ((TraderObject.m_i_PositionInMarket==-1) and (l_f_TickClose>=(TraderObject.m_f_MarketEnterPrice+0.0025*TraderObject.m_f_MarketEnterPrice))):
         TraderObject.m_i_PositionInMarket=0
+        TraderObject.m_i_Trail=0
+        TraderObject.m_f_TrailPrice=0.0
         l_cur.execute("Insert into %s (Date,Time,Price,Tradetype,Qty,Remarks) values('%s','%s','%s','%s','%s','%s');"%(TraderObject.m_str_SignalTableName, l_str_TickDate,l_str_TickTime, l_f_TickClose,'buy',TraderObject.m_i_ShareQuantity, 'Short_SL_Hit')) # Exit Trade
         l_DbHandle.commit()
 
