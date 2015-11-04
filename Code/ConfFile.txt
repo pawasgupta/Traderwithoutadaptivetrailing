@@ -1,0 +1,13 @@
+orf_db
+pawas
+pawas123
+data_tablePeriod1
+tbl_TrainingResultsPeriod1
+tbl_TrainingSignalsPeriod1
+tbl_OHLCPeriod1
+RinaCSVOutputPeriod1
+15
+17:00
+2010-03-02
+2010-03-10
+        
