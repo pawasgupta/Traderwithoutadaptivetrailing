@@ -7,6 +7,7 @@ import MySQLdb as mariadb
 import numpy as np
 import math
 import time
+import ConfigParser
 
 #-------------Class Defination Start---------
 
@@ -15,7 +16,7 @@ class Trader:
 
     def __init__(self):  # constructor to initialise the members
 
-        self.m_strDbname = ''  # Name of Database
+        self.m_strDbName = ''  # Name of Database
         self.m_strUserName = ''  # username
         self.m_strPassword = ''  # Password
         self.m_strDataTableName = ''  # name of Tick Data Table
@@ -70,25 +71,25 @@ class Trader:
 
     def ReadConfFile(self,l_strConfFile):
 
-        l_ConfFileId=open(l_strConfFile,'r')
+        l_oConfigFileObbject=ConfigParser.ConfigParser()
+        l_oConfigFileObbject.read(l_strConfFile)
+        self.m_strDbName = l_oConfigFileObbject.get('SectionConf', 'DbName')  # Name of Database
+        self.m_strUserName = l_oConfigFileObbject.get('SectionConf', 'UserName')  # username
+        self.m_strPassword = l_oConfigFileObbject.get('SectionConf', 'Password')  # Password
+        self.m_strDataTableName = l_oConfigFileObbject.get('SectionConf', 'DataTable')  # name of Tick Data Table
+        self.m_strResultTableName = l_oConfigFileObbject.get('SectionConf', 'ResultTable')  # name of Results Table (Contains Date,  Time,  Position)
+        self.m_strSignalTableName = l_oConfigFileObbject.get('SectionConf', 'SignalTable')  # name of Signal Table
+        self.m_strOHLCTableName = l_oConfigFileObbject.get('SectionConf', 'OHLCTable')  # name of OHLC Table
+        self.m_strRinaFileName = l_oConfigFileObbject.get('SectionConf', 'RinaFileName')  # Rina File name
 
-        self.m_strDbname = l_ConfFileId.readline().rstrip('\n')  # Name of Database
-        self.m_strUserName = l_ConfFileId.readline().rstrip('\n')  # username
-        self.m_strPassword = l_ConfFileId.readline().rstrip('\n')  # Password
-        self.m_strDataTableName = l_ConfFileId.readline().rstrip('\n')  # name of Tick Data Table
-        self.m_strResultTableName = l_ConfFileId.readline().rstrip('\n')  # name of Results Table (Contains Date,  Time,  Position)
-        self.m_strSignalTableName = l_ConfFileId.readline().rstrip('\n')  # name of Signal Table
-        self.m_strOHLCTableName = l_ConfFileId.readline().rstrip('\n')  # name of OHLC Table
-        self.m_strRinaFileName = l_ConfFileId.readline().rstrip('\n')  # Rina File name
+        self.m_iBarTimeInterval = l_oConfigFileObbject.getint('SectionConf', 'BarSize')  # Bar Size
+        self.m_strSessionCloseTime = l_oConfigFileObbject.get('SectionConf', 'SessionEnd')  # Session Close Time (Should have same format as Tick_Time in DataTable)
+        self.m_strRunStartDate = l_oConfigFileObbject.get('SectionConf', 'RunStartDate')
+        self.m_strRunStopDate = l_oConfigFileObbject.get('SectionConf', 'RunStopDate')
 
-        self.m_iBarTimeInterval = int(l_ConfFileId.readline().rstrip('\n'))  # Bar Size
-        self.m_strSessionCloseTime = l_ConfFileId.readline().rstrip('\n')  # Session Close Time (Should have same format as Tick_Time in DataTable)
-        self.m_strRunStartDate = l_ConfFileId.readline().rstrip('\n')
-        self.m_strRunStopDate = l_ConfFileId.readline().rstrip('\n')
-        l_ConfFileId.close()
 
     def Login(self):  # login into the database
-        l_Db = mariadb.connect(user=self.m_strUserName, passwd=self.m_strPassword, db=self.m_strDbname)
+        l_Db = mariadb.connect(user=self.m_strUserName, passwd=self.m_strPassword, db=self.m_strDbName)
         return l_Db
 
     def MovingAverage(self, l_afSeries, l_iWindow):  # Computes Moving Average

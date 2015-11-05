@@ -1,13 +1,14 @@
-orf_db
-pawas
-pawas123
-data_tablePeriod1
-tbl_TrainingResultsPeriod1
-tbl_TrainingSignalsPeriod1
-tbl_OHLCPeriod1
-RinaCSVOutputPeriod1
-15
-17:00
-2010-03-02
-2010-03-10
+[SectionConf]
+DbName : orf_db
+UserName : pawas
+Password : pawas123
+DataTable : data_tablePeriod1
+ResultTable : tbl_TrainingResultsPeriod1
+SignalTable : tbl_TrainingSignalsPeriod1
+OHLCTable : tbl_OHLCPeriod1
+RinaFileName : RinaCSVOutputPeriod1
+BarSize : 15
+SessionEnd : 17:00
+RunStartDate  : 2010-03-02
+RunStopDate : 2010-03-10
         
