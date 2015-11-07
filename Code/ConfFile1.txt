@@ -10,5 +10,4 @@ RinaFileName : RinaCSVOutputPeriod1
 BarSize : 15
 SessionEnd : 17:00
 RunStartDate  : 2010-03-02
-RunStopDate : 2010-03-10
-        
+RunStopDate : 2010-03-15        

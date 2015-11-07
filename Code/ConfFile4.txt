@@ -1,0 +1,14 @@
+[SectionConf]
+DbName : orf_db
+UserName : pawas
+Password : pawas123
+DataTable : data_tablePeriod4
+ResultTable : tbl_TrainingResultsPeriod4
+SignalTable : tbl_TrainingSignalsPeriod4
+OHLCTable : tbl_OHLCPeriod4
+RinaFileName : RinaCSVOutputPeriod4
+BarSize : 15
+SessionEnd : 17:00
+RunStartDate  : 2012-05-02
+RunStopDate : 2012-05-15
+        
