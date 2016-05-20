@@ -11,3 +11,4 @@ BarSize : 15
 SessionEnd : 17:00
 RunStartDate  : 2010-03-02
 RunStopDate : 2010-03-15        
+RunStopDate : 0

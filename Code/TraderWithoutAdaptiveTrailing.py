@@ -25,13 +25,17 @@ class Trader:
         self.m_strSignalTableName = ''  # name of Signal Table
         self.m_strOHLCTableName = ''  # name of Signal Table
         self.m_strRinaFileName = ""  # Rina File name
-
+        self.m_iRestartFlag=0
+        self.m_iInternalRestartFlag=0
 
         self.m_iBarTimeInterval = 15  # Bar Size
         self.m_strSessionCloseTime = "17:00"  # Session Close Time (Should have same format as Tick_Time in DataTable)
 
         self.m_strRunStartDate=''
         self.m_strRunStopDate=''
+        self.m_strRunRestartDate=''
+        self.m_strRunRestartTime=''
+
 
         self.m_iTotalTicks = 0  # Counts the Total Ticks
         self.m_iBarNumber = 0  # Time Instant or  Bar Count
@@ -87,6 +91,9 @@ class Trader:
         self.m_strSessionCloseTime = l_oConfigFileObbject.get('SectionConf', 'SessionEnd')  # Session Close Time (Should have same format as Tick_Time in DataTable)
         self.m_strRunStartDate = l_oConfigFileObbject.get('SectionConf', 'RunStartDate')
         self.m_strRunStopDate = l_oConfigFileObbject.get('SectionConf', 'RunStopDate')
+        self.m_strRunRestartDate = l_oConfigFileObbject.get('SectionConf', 'RunRestartDate')
+        self.m_strRunRestartTime = l_oConfigFileObbject.get('SectionConf', 'RunRestartTime')
+        self.m_iRestartFlag = int(l_oConfigFileObbject.get('SectionConf', 'RestartFlag'))
 
 
     def Login(self):  # login into the database
@@ -112,8 +119,8 @@ class Trader:
         l_Cursor.execute("show tables like '%s'" % (self.m_strResultTableName))
         l_QueryResult = l_Cursor.fetchall()
         if not l_QueryResult:  # Create table if it does not exist
-            l_Cursor.execute("create table %s (Date text NOT NULL,  Time text NOT NULL,  Position int NOT NULL)" % (self.m_strResultTableName))
-        else:  # If it Exits,  Delete data present in table
+            l_Cursor.execute("create table %s (Date text NOT NULL,  Time text NOT NULL,  Position int NOT NULL, TempPosition real NOT NULL)" % (self.m_strResultTableName))
+        else:  # If it Exists,  Delete data present in table
             l_Cursor.execute("delete from %s;" % (self.m_strResultTableName))
             l_DbHandle.commit()
         logging.info('Result Table Created')
@@ -122,7 +129,7 @@ class Trader:
         l_QueryResult = l_Cursor.fetchall()
         if not l_QueryResult:  # Create table if it does not exist
             l_Cursor.execute("create table %s (Date text NOT NULL,  Time text NOT NULL,  Open real NOT NULL,  High real NOT NULL,  Low real NOT NULL,  Close real NOT NULL)" % (self.m_strOHLCTableName))
-        else:  #If it Exits,  Delete data present in table
+        else:  #If it Exists,  Delete data present in table
             l_Cursor.execute("delete from %s;" % (self.m_strOHLCTableName))
             l_DbHandle.commit()
         logging.info('OHLC Table Created')
@@ -290,17 +297,21 @@ class Trader:
         if (self.m_iBarNumber == self.m_iTradingWindowSize):  # Initialise during 1st call
             self.m_afProfit = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
             self.m_afCumulativeProfit = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
-            self.m_afTempPosition = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
-
+            #self.m_afTempPosition = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
             self.m_2dafFeatureMatrix = np.zeros((self.m_iBarsBack, self.m_iTradingWindowSize), dtype='float64')
-
             self.m_afReturns = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
             l_iIndex = 1
             while (l_iIndex < self.m_iTradingWindowSize - 1):  # loop to assign all the values of r,  cannot put abcd assignment here because it has to be in the same loop as the weight update
                 self.m_afReturns[l_iIndex] = l_afClosePrice[l_iIndex] - l_afClosePrice[l_iIndex - 1]
                 l_iIndex = l_iIndex + 1
-
             self.m_2dafWeights = np.zeros((self.m_iBarsBack, self.m_iTradingWindowSize - 1), dtype='float64')
+
+            if self.m_iInternalRestartFlag == 1:
+                #for l_iloopvar in range (self.m_iBarsBack,self.m_iTradingWindowSize):
+                #    self.m_2dafFeatureMatrix[:,l_iloopvar]=l_afFeatureVector[l_iloopvar-self.m_i_BarsBack:l_iloopvar]
+                for l_iloopvar in range (0,self.m_iBarsBack):
+                    self.m_2dafFeatureMatrix[l_iloopvar,self.m_iBarsBack-l_iloopvar:self.m_iTradingWindowSize]=l_afFeatureVector[0:self.m_iTradingWindowSize-self.m_iBarsBack+l_iloopvar]
+                self.m_iRestartFlag=0
 
 
         # ---appending values corresponding to each bar-------
@@ -535,17 +546,59 @@ class Trader:
         l_DbHandle = self.Login()  # login into database
         l_Cursor = l_DbHandle.cursor()
 
-        self.CreateTable()  # Create tables
-        self.CreateRinaFile()  # Create Rina file with header
+        if (self.m_iRestartFlag==0):
+            self.CreateTable()  # Create tables
+            self.CreateRinaFile()  # Create Rina file with header
 
         print "Start date " + time.strftime("%x")
         print "Start time " + time.strftime("%X")
 
         while (l_iProgramFlag == 1):
         #---------------Read Tick data and create OHLC matrix----------------------------------
+          #---------Read current price-------
+            if (self.m_iRestartFlag==1):
+                self.m_liPosition=[]
+                self.m_afTempPosition = np.zeros(0, dtype='float64')
+                l_Cursor.execute("select count(*) from %s" % (self.m_strResultTableName))  # read 1 line form database
+                l_QueryResult=l_Cursor.fetchall()  # Query result is a tuple
+                l_iTotalRows=int(l_QueryResult[0][0])
+                l_iFromRow=l_iTotalRows-(self.m_iTradingWindowSize-1)
+                l_iNumberOfRow=self.m_iTradingWindowSize-1
+                #a=20
+                #b=79
+                l_Cursor.execute("select Date, Time, Position,TempPosition from %s LIMIT %s, %s;" % (self.m_strResultTableName, l_iFromRow,l_iNumberOfRow))  # read 1 line form database
+                #l_Cursor.execute("select Date, Time, Position,TempPosition from %s LIMIT %s, %s;" % (self.m_strResultTableName,a,b))  # read 1 line form database
+                l_QueryResult=l_Cursor.fetchall()
+                for l_tItem in l_QueryResult: # item is tuple and local
+                    self.m_liPosition.append(int(l_tItem[2]))
+                    self.m_afTempPosition = np.append(self.m_afTempPosition, float(l_tItem[3]))
+
+                l_Cursor.execute("select Date, Time, Open,Low,High,Close from %s LIMIT %s, %s;" % (self.m_strOHLCTableName,l_iFromRow,l_iNumberOfRow))  # read 1 line form database
+                #l_Cursor.execute("select Date, Time, Open,Low,High,Close from %s LIMIT %s, %s;" % (self.m_strOHLCTableName,a,b))  # read 1 line form database
+                l_QueryResult=l_Cursor.fetchall()
+                for l_tItem in l_QueryResult:
+                    self.m_2dlfOHLCMatrix.append([])
+                    self.m_2dlfOHLCMatrix[-1].extend([l_tItem[0],l_tItem[1],l_tItem[2],l_tItem[3],l_tItem[4],l_tItem[5]])
+                    self.m_2dlfNonRoundedClose.append([])  #Close for Trades
+                    self.m_2dlfNonRoundedClose[-1].append(float(l_tItem[5])) # we have TradingWindow-1 postions and data
+
+                self.m_iBarNumber=self.m_iTradingWindowSize-1 # I assume that the code crashes after the TradingWindow-1 Positions
+
+                l_Cursor.execute("select count(*) from %s where TICK_DATE >='%s' and TICK_DATE <'%s' ;" % (self.m_strDataTableName, self.m_strRunStartDate, self.m_strRunRestartDate))
+                l_QueryResult = l_Cursor.fetchall()
+                self.m_iTotalTicks=int(l_QueryResult[0][0])
+                l_Cursor.execute("select count(*) from %s where TICK_DATE ='%s' and STR_TO_DATE(Tick_Time, '%s') < STR_TO_DATE('%s', '%s');" % (self.m_strDataTableName, self.m_strRunRestartDate, '%H:%i',self.m_strRunRestartTime, '%H:%i'))  # read 1 line form database
+                l_QueryResult = l_Cursor.fetchall()
+                self.m_iTotalTicks+=int(l_QueryResult[0][0])
+
+                #print self.m_iTotalTicks
+                self.m_iRestartFlag=0
+                self.m_iInternalRestartFlag=1
 
             l_Cursor.execute("select TICK_DATE, TICK_TIME, OPEN, HIGH, LOW, CLOSE from %s where TICK_DATE >='%s' and TICK_DATE <='%s' LIMIT %s, 1;" % (self.m_strDataTableName, self.m_strRunStartDate, self.m_strRunStopDate, self.m_iTotalTicks))  # read 1 line form database
             l_QueryResult = l_Cursor.fetchall()
+
+
             if not l_QueryResult:  # if no data then Exit form loop
                 print "No data Present \n"
                 print "End date " + time.strftime("%x")
@@ -557,7 +610,9 @@ class Trader:
                 l_iTickNumber = l_iTickNumber + 1  # Increment tick number
                 self.m_iTotalTicks += 1  # Increment Total Tick number
                 l_strTickDate = l_QueryResult[0][0]
+                #print l_strTickDate
                 l_strTickTime = l_QueryResult[0][1]
+                #print l_strTickTime
                 l_fTickOpen = l_QueryResult[0][2]
                 l_fTickHigh = l_QueryResult[0][3]
                 l_fTickLow = l_QueryResult[0][4]
@@ -574,17 +629,15 @@ class Trader:
                     l_iTickNumber = 0  # reset Tick Count for next bar
                     if self.m_iBarNumber < self.m_iTradingWindowSize:
                         self.m_liPosition.append(0)
+                        self.m_afTempPosition=np.append(self.m_afTempPosition,0.0)
+                        l_Cursor.execute("Insert into %s (Date, Time, Position,TempPosition) values('%s', '%s', '%s','%s');" % (self.m_strResultTableName, str(l_strBarDate), str(l_strBarTime),self.m_liPosition[self.m_iBarNumber - 1],self.m_afTempPosition[self.m_iBarNumber - 1]))  # Write into DB
+                        l_DbHandle.commit()
+                        logging.info('Writing Position in Result Table for Date= %s and Time= %s' %(l_strBarDate, l_strBarTime))
                     else:
                         self.TradingAlgorithm()
-
-                    l_Cursor.execute("Insert into %s (Date, Time, Position) values('%s', '%s', '%s');" % (self.m_strResultTableName, str(l_strBarDate), str(l_strBarTime),self.m_liPosition[self.m_iBarNumber - 1]))  # Write into DB
-                    l_DbHandle.commit()
-                    logging.info('Writing Position in Result Table for Date= %s and Time= %s' %(l_strBarDate, l_strBarTime))
-
-
-                    #print str(l_strBarDate)
-                    #print str(l_strBarTime)
-                    #print self.m_liPosition[self.m_iBarNumber-1]
+                        l_Cursor.execute("Insert into %s (Date, Time, Position,TempPosition) values('%s', '%s', '%s','%s');" % (self.m_strResultTableName, str(l_strBarDate), str(l_strBarTime),self.m_liPosition[self.m_iBarNumber - 1],self.m_afTempPosition[self.m_iBarNumber - 1]))  # Write into DB
+                        l_DbHandle.commit()
+                        logging.info('Writing Position in Result Table for Date= %s and Time= %s' %(l_strBarDate, l_strBarTime))
 
                     self.SignalGeneration()
 
@@ -663,11 +716,11 @@ class Trader:
 l_strLogFile=''
 logging.basicConfig(filename=l_strLogFile,level=logging.DEBUG)
 
-l_strConfFile='ConfFile1.txt'
+l_strConfFile='ConfFile1a.txt'
 l_oTraderObject1 = Trader(l_strConfFile)  # Trader Instance
 l_oTraderObject1.Trading()
 
-
+'''
 l_strConfFile='ConfFile2.txt'
 l_oTraderObject2 = Trader(l_strConfFile)  # Trader Instance
 l_oTraderObject2.Trading()
@@ -681,5 +734,5 @@ l_oTraderObject3.Trading()
 l_strConfFile='ConfFile4.txt'
 l_oTraderObject4 = Trader(l_strConfFile)  # Trader Instance
 l_oTraderObject4.Trading()
-
+'''
 
