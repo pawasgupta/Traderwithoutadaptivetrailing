@@ -25,18 +25,22 @@ class Trader:
         self.m_strSignalTableName = ''  # name of Signal Table
         self.m_strOHLCTableName = ''  # name of Signal Table
         self.m_strRinaFileName = ""  # Rina File name
-        self.m_iRestartFlag=0
-        self.m_iInternalRestartFlag=0
-
+        
         self.m_iBarTimeInterval = 15  # Bar Size
         self.m_strSessionCloseTime = "17:00"  # Session Close Time (Should have same format as Tick_Time in DataTable)
 
         self.m_strRunStartDate=''
         self.m_strRunStopDate=''
-        self.m_strRunRestartDate=''
-        self.m_strRunRestartTime=''
-
-
+        
+		#-----------CHANGE 1--------------------- ( Changes made to resolve crashing issue )
+		self.m_strRunRestartDate='' # Enter the date when u r restarting the code from
+        self.m_strRunRestartTime='' # Enter the time when u r restarting the code from
+		self.m_iRestartFlag=0		# 1 if u r restarting after the crash
+									# 0 if u r starting normally
+        self.m_iInternalRestartFlag=0 # a flag that initialize self.m_2dafFeatureMatrix differently in case u restart 
+									  # it will be set and reset automatically
+		#--------------End of CHANGE 1-----------------------------
+		
         self.m_iTotalTicks = 0  # Counts the Total Ticks
         self.m_iBarNumber = 0  # Time Instant or  Bar Count
         self.m_2dlfOHLCMatrix = []  # Contains Date, Time, O, H, L, C for Each bar
@@ -305,14 +309,18 @@ class Trader:
                 self.m_afReturns[l_iIndex] = l_afClosePrice[l_iIndex] - l_afClosePrice[l_iIndex - 1]
                 l_iIndex = l_iIndex + 1
             self.m_2dafWeights = np.zeros((self.m_iBarsBack, self.m_iTradingWindowSize - 1), dtype='float64')
-
+			
+			
+			#-----------------CHANGE 3----------------------------------
+			#---If restarting, initialize the feature matrix from old prices that have been read from the OHLC table of the database
             if self.m_iInternalRestartFlag == 1:
                 #for l_iloopvar in range (self.m_iBarsBack,self.m_iTradingWindowSize):
                 #    self.m_2dafFeatureMatrix[:,l_iloopvar]=l_afFeatureVector[l_iloopvar-self.m_i_BarsBack:l_iloopvar]
                 for l_iloopvar in range (0,self.m_iBarsBack):
                     self.m_2dafFeatureMatrix[l_iloopvar,self.m_iBarsBack-l_iloopvar:self.m_iTradingWindowSize]=l_afFeatureVector[0:self.m_iTradingWindowSize-self.m_iBarsBack+l_iloopvar]
                 self.m_iRestartFlag=0
-
+			#-----------------END of CHANGE 3----------------------------------
+			
 
         # ---appending values corresponding to each bar-------
         #  ---append in each call---------------------
@@ -554,47 +562,56 @@ class Trader:
         print "Start time " + time.strftime("%X")
 
         while (l_iProgramFlag == 1):
-        #---------------Read Tick data and create OHLC matrix----------------------------------
+        #---------------Read Tick data and create OHLC matrix------------
           #---------Read current price-------
-            if (self.m_iRestartFlag==1):
-                self.m_liPosition=[]
+		  
+			#-----------------CHANGE 2----------------------------------
+            if (self.m_iRestartFlag==1): # If u r restarting then 
+                #--Count the number of positions that were stored in database before u crashed
+				self.m_liPosition=[]
                 self.m_afTempPosition = np.zeros(0, dtype='float64')
                 l_Cursor.execute("select count(*) from %s" % (self.m_strResultTableName))  # read 1 line form database
                 l_QueryResult=l_Cursor.fetchall()  # Query result is a tuple
                 l_iTotalRows=int(l_QueryResult[0][0])
+				
+				#-----Fetch last 'TRADINGWINDOWSIZE -1' Positions from database
                 l_iFromRow=l_iTotalRows-(self.m_iTradingWindowSize-1)
                 l_iNumberOfRow=self.m_iTradingWindowSize-1
-                #a=20
-                #b=79
                 l_Cursor.execute("select Date, Time, Position,TempPosition from %s LIMIT %s, %s;" % (self.m_strResultTableName, l_iFromRow,l_iNumberOfRow))  # read 1 line form database
-                #l_Cursor.execute("select Date, Time, Position,TempPosition from %s LIMIT %s, %s;" % (self.m_strResultTableName,a,b))  # read 1 line form database
                 l_QueryResult=l_Cursor.fetchall()
                 for l_tItem in l_QueryResult: # item is tuple and local
                     self.m_liPosition.append(int(l_tItem[2]))
                     self.m_afTempPosition = np.append(self.m_afTempPosition, float(l_tItem[3]))
-
+				
+				#-----Fetch last 'TRADINGWINDOWSIZE -1' Bars from database
                 l_Cursor.execute("select Date, Time, Open,Low,High,Close from %s LIMIT %s, %s;" % (self.m_strOHLCTableName,l_iFromRow,l_iNumberOfRow))  # read 1 line form database
-                #l_Cursor.execute("select Date, Time, Open,Low,High,Close from %s LIMIT %s, %s;" % (self.m_strOHLCTableName,a,b))  # read 1 line form database
                 l_QueryResult=l_Cursor.fetchall()
                 for l_tItem in l_QueryResult:
                     self.m_2dlfOHLCMatrix.append([])
                     self.m_2dlfOHLCMatrix[-1].extend([l_tItem[0],l_tItem[1],l_tItem[2],l_tItem[3],l_tItem[4],l_tItem[5]])
                     self.m_2dlfNonRoundedClose.append([])  #Close for Trades
-                    self.m_2dlfNonRoundedClose[-1].append(float(l_tItem[5])) # we have TradingWindow-1 postions and data
+                    self.m_2dlfNonRoundedClose[-1].append(float(l_tItem[5])) # we have TradingWindow-1 positions and data
 
-                self.m_iBarNumber=self.m_iTradingWindowSize-1 # I assume that the code crashes after the TradingWindow-1 Positions
+                self.m_iBarNumber=self.m_iTradingWindowSize-1 # ASSUMTION: The code had crashed after running for at least TradingWindow-1 bars so we have 
+																#at least that much data stored in database 	
 
-                l_Cursor.execute("select count(*) from %s where TICK_DATE >='%s' and TICK_DATE <'%s' ;" % (self.m_strDataTableName, self.m_strRunStartDate, self.m_strRunRestartDate))
+                #---Find the row number of the row in the tick data table that u r restarting from
+				l_Cursor.execute("select count(*) from %s where TICK_DATE >='%s' and TICK_DATE <'%s' ;" % (self.m_strDataTableName, self.m_strRunStartDate, self.m_strRunRestartDate))
                 l_QueryResult = l_Cursor.fetchall()
                 self.m_iTotalTicks=int(l_QueryResult[0][0])
                 l_Cursor.execute("select count(*) from %s where TICK_DATE ='%s' and STR_TO_DATE(Tick_Time, '%s') < STR_TO_DATE('%s', '%s');" % (self.m_strDataTableName, self.m_strRunRestartDate, '%H:%i',self.m_strRunRestartTime, '%H:%i'))  # read 1 line form database
                 l_QueryResult = l_Cursor.fetchall()
-                self.m_iTotalTicks+=int(l_QueryResult[0][0])
+                self.m_iTotalTicks+=int(l_QueryResult[0][0]) # So we will start reading from the desired tick and start gathering the data to form a bar.
 
                 #print self.m_iTotalTicks
                 self.m_iRestartFlag=0
                 self.m_iInternalRestartFlag=1
-
+				
+				# IN SHORT: Read 'Trading Window-1' bars from database
+				#			seek for new bar from restart point
+			#------------------End of CHANGE 2----------------------------------
+			
+			
             l_Cursor.execute("select TICK_DATE, TICK_TIME, OPEN, HIGH, LOW, CLOSE from %s where TICK_DATE >='%s' and TICK_DATE <='%s' LIMIT %s, 1;" % (self.m_strDataTableName, self.m_strRunStartDate, self.m_strRunStopDate, self.m_iTotalTicks))  # read 1 line form database
             l_QueryResult = l_Cursor.fetchall()
 
@@ -716,10 +733,11 @@ class Trader:
 l_strLogFile=''
 logging.basicConfig(filename=l_strLogFile,level=logging.DEBUG)
 
-l_strConfFile='ConfFile1a.txt'
+#-----------CHANGE 4---------------------
+l_strConfFile='ConfFile1a.txt'  # Please see the change in Configuration file
 l_oTraderObject1 = Trader(l_strConfFile)  # Trader Instance
 l_oTraderObject1.Trading()
-
+#-----------End of CHANGE 4-------------
 '''
 l_strConfFile='ConfFile2.txt'
 l_oTraderObject2 = Trader(l_strConfFile)  # Trader Instance

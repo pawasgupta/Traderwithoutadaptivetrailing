@@ -12,5 +12,5 @@ SessionEnd : 17:00
 RunStartDate  : 2010-03-02
 RunStopDate : 2010-03-15 
 RunRestartDate  : 2010-03-05
-RunRestartTime  : 14:19       
-RestartFlag : 0
+RunRestartTime  : 09:49       
+RestartFlag : 1
