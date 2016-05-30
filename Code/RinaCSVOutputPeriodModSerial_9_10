@@ -1,3 +1,2 @@
 "Trade #", "Date", "Time", "Signal", "Price", "Contracts", "% Profit", "Runup", "Entry Eff", "Total", "System"
 "Type", "Date", "Time", "Signal", "Price", "Profit", "Cum Profit", "Drawdown", "Exit Eff", "Eff", "Market"
-"1", "2010-03-04", "16:18", "Enter_Short1", "45.885", "10000", "1", "0", "0", "0", "portfolio_1"
