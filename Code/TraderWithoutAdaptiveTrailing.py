@@ -22,6 +22,7 @@ class Trader:
         self.m_strPriceDbUserName = ''  # username
         self.m_strPriceDbPassword = ''  # Password
         self.m_strPriceTableName = ''  # name of Tick Data Table
+        self.m_strPriceDbHost = ''
 
         self.m_strTradeDbName = ''  # Name of Database
         self.m_strTradeDbUserName = ''  # username
@@ -95,10 +96,12 @@ class Trader:
         self.m_strPriceDbUserName = l_oConfigFileObject.get('SectionConf', 'PriceDbUserName')  # username
         self.m_strPriceDbPassword = l_oConfigFileObject.get('SectionConf', 'PriceDbPassword')  # Password
         self.m_strPriceTableName = l_oConfigFileObject.get('SectionConf', 'PriceTable')  # name of Tick Data Table
+        self.m_strPriceDbHost = l_oConfigFileObject.get('SectionConf', 'PriceDbHost')
 
         self.m_strTradeDbName = l_oConfigFileObject.get('SectionConf', 'TradeDbName')  # Name of Database
         self.m_strTradeDbUserName = l_oConfigFileObject.get('SectionConf', 'TradeDbUserName')  # username
         self.m_strTradeDbPassword = l_oConfigFileObject.get('SectionConf', 'TradeDbPassword')  # Password
+        self.m_strTradeDbHost = l_oConfigFileObject.get('SectionConf', 'TradeDbHost')
 
         self.m_strResultTableName = l_oConfigFileObject.get('SectionConf', 'ResultTable')  # name of Results Table (Contains Date,  Time,  Position)
         self.m_strSignalTableName = l_oConfigFileObject.get('SectionConf', 'SignalTable')  # name of Signal Table
@@ -117,11 +120,11 @@ class Trader:
 
     #--------------Change_B4-----------------
     def LoginToPriceDb(self):  # login into the database
-        l_PriceDbHandle = mariadb.connect(user=self.m_strPriceDbUserName, passwd=self.m_strPriceDbPassword, db=self.m_strPriceDbName)
+        l_PriceDbHandle = mariadb.connect(user=self.m_strPriceDbUserName, passwd=self.m_strPriceDbPassword, host= self.m_strPriceDbHost,  db=self.m_strPriceDbName)
         return l_PriceDbHandle
 
     def LoginToTradeDb(self):  # login into the database
-        l_TradeDbHandle = mariadb.connect(user=self.m_strTradeDbUserName, passwd=self.m_strTradeDbPassword, db=self.m_strTradeDbName)
+        l_TradeDbHandle = mariadb.connect(user=self.m_strTradeDbUserName, passwd=self.m_strTradeDbPassword, host= self.m_strTradeDbHost, db=self.m_strTradeDbName)
         return l_TradeDbHandle
 
     def MovingAverage(self, l_afSeries, l_iWindow):  # Computes Moving Average

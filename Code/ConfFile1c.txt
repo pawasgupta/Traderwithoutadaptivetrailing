@@ -1,22 +1,24 @@
 [SectionConf]
 PriceDBName: pricedbmt
 PriceTable : usdinr
-PriceDBUserName : pawas
-PriceDBPassword : pawas123
-TradeDBName: tradedbmt
-TradeDBUserName : pawas
-TradeDBPassword : pawas123
+PriceDbUserName : pawas
+PriceDbPassword : pawas123
+PriceDbHost : 127.0.0.1
+TradeDbName: tradedbmt
+TradeDbUserName : pawas
+TradeDbPassword : pawas123
+TradeDbHost : 127.0.0.1
 ResultTable : tbl_TrainingResultsPeriodModSerial_9_10
 SignalTable : tbl_TrainingSignalsPeriodModSerial_9_10
 OHLCTable : tbl_OHLCPeriodModSerial_9_10
 RinaFileName : RinaCSVOutputPeriodModSerial_9_10
-BarSize : 2
+BarSize : 3
 SessionBegin: 906
 SessionEnd : 1700
-LiveMode : 1
-RunRestartDate  : 1160526
-RunRestartTime  : 1313
-RestartFlag : 1
+LiveMode : 0
 RunStartDate:1160526 
 RunStopDate: 1160527
+RestartFlag : 0
+RunRestartDate  : 1160526
+RunRestartTime  : 1313
 
