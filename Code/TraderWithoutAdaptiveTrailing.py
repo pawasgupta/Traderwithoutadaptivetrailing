@@ -22,7 +22,7 @@ class Trader:
         self.m_strPriceDbUserName = ''  # username
         self.m_strPriceDbPassword = ''  # Password
         self.m_strPriceTableName = ''  # name of Tick Data Table
-        self.m_strPriceDbHost = ''
+        self.m_strPriceDbHost = '' # ip of the pricedb host
 
         self.m_strTradeDbName = ''  # Name of Database
         self.m_strTradeDbUserName = ''  # username
