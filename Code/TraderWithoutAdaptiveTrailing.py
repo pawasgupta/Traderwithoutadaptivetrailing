@@ -80,9 +80,11 @@ class Trader:
         self.m_iTrailFlag = 0  # for Trailing
 
         self.m_iTradeType = 0  # variable for remarks for trades in Trade sheet
-        self.m_iShareQuantity = 10000  # Share Quantity
         self.m_iPositionInMarket = 0  # variable that stores current position in market
         self.m_fMarketEnterPrice = 0.0  # trade Entry Price (used in Trailing and Stoploss)
+        self.m_iNumberofLots=1
+        self.m_iLotSize=10000
+        self.m_iShareQuantity = 10000  # Share Quantity
 
         self.m_iRinaInternalFlag = 1  # Flag used internally by Write2Rina module
         self.m_iGenerateRina = 1  # Make 0 if u don't want to write 2 Rina
@@ -122,6 +124,9 @@ class Trader:
         self.m_iLiveMode = int(l_oConfigFileObject.get('SectionConf', 'LiveMode'))
 
         self.m_strLogFileName = l_oConfigFileObject.get('SectionConf', 'LogFileName')
+        self.m_iNumberofLots = int(l_oConfigFileObject.get('SectionConf', 'NumberofLots'))
+        self.m_iLotSize = int(l_oConfigFileObject.get('SectionConf', 'LotSize'))
+        self.m_iShareQuantity=self.m_iNumberofLots*self.m_iLotSize
 
     #--------------Change_B4-----------------
     def LoginToPriceDb(self):  # login into the database
@@ -206,7 +211,7 @@ class Trader:
         # create console handler and set level to debug
         #l_FileHandlerforLogger = logging.StreamHandler() # To log to Console
         if self.m_iRestartFlag==0 :
-            l_FileHandlerforLogger = logging.FileHandler(self.m_strLogFileName)
+            l_FileHandlerforLogger = logging.FileHandler(self.m_strLogFileName,'w')
         else:
             l_FileHandlerforLogger = logging.FileHandler(self.m_strLogFileName,'a')
 
@@ -436,7 +441,7 @@ class Trader:
         else:
             self.m_liPosition[self.m_iBarNumber - 1] = 0
 
-        self.m_afProfit[self.m_iBarNumber - 1] = self.m_liPosition[self.m_iBarNumber - 2] * (l_afClosePrice[self.m_iBarNumber - 1] - l_afClosePrice[self.m_iBarNumber - 2]) - 0.0035 * abs(self.m_liPosition[self.m_iBarNumber - 1] - self.m_liPosition[self.m_iBarNumber - 2])  # instantaneous profit
+        self.m_afProfit[self.m_iBarNumber - 1] = self.m_liPosition[self.m_iBarNumber - 2] * (l_afClosePrice[self.m_iBarNumber - 1] - l_afClosePrice[self.m_iBarNumber - 2]) - 0.0035 *self.m_iNumberofLots * abs(self.m_liPosition[self.m_iBarNumber - 1] - self.m_liPosition[self.m_iBarNumber - 2])  # instantaneous profit
 
         self.m_afCumulativeProfit[self.m_iBarNumber - 1] = self.m_afCumulativeProfit[self.m_iBarNumber - 2] + self.m_afProfit[self.m_iBarNumber - 1]  # Cumulative Profit
 
@@ -635,8 +640,8 @@ class Trader:
         return
 
     def Trading(self):
-        self.ReadConfFile(self.m_strConfFile)
-        logging.basicConfig(filename='logdata.log',format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+        self.ReadConfFile(self.m_strConfFile) # Read Configuration file
+        #logging.basicConfig(filename='logdata.log',format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p') # LOgs to the file
         #------------ local variables-----------
         l_iProgramFlag = 1  # loop variable
         l_iTickNumber = 0  # Count the ticks for Bar Creation

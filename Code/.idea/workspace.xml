@@ -26,8 +26,8 @@
       <file leaf-file-name="TraderWithoutAdaptiveTrailing.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TraderWithoutAdaptiveTrailing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02905983" vertical-offset="10914" max-vertical-offset="15368">
-              <caret line="643" column="26" selection-start-line="643" selection-start-column="26" selection-end-line="643" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.2276923" vertical-offset="10823" max-vertical-offset="15453">
+              <caret line="641" column="22" selection-start-line="641" selection-start-column="22" selection-end-line="641" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -52,7 +52,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -80,7 +80,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -101,6 +100,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -323,8 +323,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="780" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -334,7 +334,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39872408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36842105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36655948" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -363,17 +363,26 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/TraderWithoutAdaptiveTrailing.py</url>
-          <line>638</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="33" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/TraderWithoutAdaptiveTrailing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3319" max-vertical-offset="15368">
+          <caret line="208" column="83" selection-start-line="208" selection-start-column="83" selection-end-line="208" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TraderWithoutAdaptiveTrailing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15368">
+          <caret line="643" column="26" selection-start-line="643" selection-start-column="26" selection-end-line="643" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TraderWithoutAdaptiveTrailing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="14616" max-vertical-offset="15317">
@@ -469,8 +478,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TraderWithoutAdaptiveTrailing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02905983" vertical-offset="10914" max-vertical-offset="15368">
-          <caret line="643" column="26" selection-start-line="643" selection-start-column="26" selection-end-line="643" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.2276923" vertical-offset="10823" max-vertical-offset="15453">
+          <caret line="641" column="22" selection-start-line="641" selection-start-column="22" selection-end-line="641" selection-end-column="22" />
           <folding />
         </state>
       </provider>
