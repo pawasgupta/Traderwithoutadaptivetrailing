@@ -1,9 +1,9 @@
 [SectionConf]
-PriceDBName: pricedbmt
+PriceDBName: data
 PriceTable : usdinr
-PriceDbUserName : pawas
-PriceDbPassword : pawas123
-PriceDbHost : 127.0.0.1
+PriceDbUserName : pricereader
+PriceDbPassword : PDBReader@848
+PriceDbHost : 172.16.3.245
 TradeDbName: tradedbmt
 TradeDbUserName : pawas
 TradeDbPassword : pawas123
@@ -14,10 +14,11 @@ OHLCTable : tbl_OHLCPeriodModSerial_9_10
 RinaFileName : RinaCSVOutputPeriodModSerial_9_10
 BarSize : 3
 LiveMode : 0
-RunStartDate:1160526 
+RunStartDate:1160525 
 RunStopDate: 1160527
 SessionBegin: 906
 SessionEnd : 1700
 RestartFlag : 0
 RunRestartDate  : 1160526
 RunRestartTime  : 1313
+LogFileName : LogFile
