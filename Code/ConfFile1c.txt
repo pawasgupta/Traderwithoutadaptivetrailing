@@ -22,5 +22,5 @@ RestartFlag : 0
 RunRestartDate  : 1160526
 RunRestartTime  : 1313
 LogFileName : LogFile
-NumberofLots : 1
-LotSize : 10000
+NumberofLots : 5
+LotSize : 1000

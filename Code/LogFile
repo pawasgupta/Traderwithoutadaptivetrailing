@@ -1,164 +1,250 @@
-2016-06-02 15:08:52,490 - LogsforTrader - INFO - Result Table Created
-2016-06-02 15:08:52,585 - LogsforTrader - INFO - OHLC Table Created
-2016-06-02 15:08:52,588 - LogsforTrader - INFO - Signal Table Created
-2016-06-02 15:08:52,589 - LogsforTrader - INFO - Rina File Created with headers
-2016-06-02 15:08:52,634 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 906
-2016-06-02 15:08:52,723 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 906
-2016-06-02 15:08:52,841 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 909
-2016-06-02 15:08:52,918 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 909
-2016-06-02 15:08:52,999 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 912
-2016-06-02 15:08:53,062 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 912
-2016-06-02 15:08:53,148 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 915
-2016-06-02 15:08:53,200 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 915
-2016-06-02 15:08:53,269 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 918
-2016-06-02 15:08:53,325 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 918
-2016-06-02 15:08:53,387 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 921
-2016-06-02 15:08:53,447 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 921
-2016-06-02 15:08:53,532 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 924
-2016-06-02 15:08:53,627 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 924
-2016-06-02 15:08:53,706 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 927
-2016-06-02 15:08:53,736 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 927
-2016-06-02 15:08:53,849 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 930
-2016-06-02 15:08:53,940 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 930
-2016-06-02 15:08:54,042 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 933
-2016-06-02 15:08:54,108 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 933
-2016-06-02 15:08:54,171 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 936
-2016-06-02 15:08:54,209 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 936
-2016-06-02 15:08:54,275 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 939
-2016-06-02 15:08:54,312 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 939
-2016-06-02 15:08:54,369 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 942
-2016-06-02 15:08:54,408 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 942
-2016-06-02 15:08:54,487 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 945
-2016-06-02 15:08:54,552 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 945
-2016-06-02 15:08:54,640 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 948
-2016-06-02 15:08:54,734 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 948
-2016-06-02 15:08:54,818 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 951
-2016-06-02 15:08:54,888 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 951
-2016-06-02 15:08:54,977 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 954
-2016-06-02 15:08:55,032 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 954
-2016-06-02 15:08:55,069 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 957
-2016-06-02 15:08:55,117 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 957
-2016-06-02 15:08:55,200 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1000
-2016-06-02 15:08:55,236 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1000
-2016-06-02 15:08:55,306 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1003
-2016-06-02 15:08:55,372 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1003
-2016-06-02 15:08:55,454 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1006
-2016-06-02 15:08:55,516 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1006
-2016-06-02 15:08:55,559 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1009
-2016-06-02 15:08:55,592 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1009
-2016-06-02 15:08:55,674 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1012
-2016-06-02 15:08:55,732 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1012
-2016-06-02 15:08:55,786 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1015
-2016-06-02 15:08:55,846 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1015
-2016-06-02 15:08:55,924 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1018
-2016-06-02 15:08:55,999 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1018
-2016-06-02 15:08:56,075 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1021
-2016-06-02 15:08:56,098 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1021
-2016-06-02 15:08:56,203 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1024
-2016-06-02 15:08:56,233 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1024
-2016-06-02 15:08:56,292 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1027
-2016-06-02 15:08:56,362 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1027
-2016-06-02 15:08:56,431 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1030
-2016-06-02 15:08:56,479 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1030
-2016-06-02 15:08:56,549 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1033
-2016-06-02 15:08:56,625 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1033
-2016-06-02 15:08:56,803 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1036
-2016-06-02 15:08:56,907 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1036
-2016-06-02 15:08:56,994 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1039
-2016-06-02 15:08:57,032 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1039
-2016-06-02 15:08:57,095 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1042
-2016-06-02 15:08:57,164 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1042
-2016-06-02 15:08:57,259 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1045
-2016-06-02 15:08:57,311 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1045
-2016-06-02 15:08:57,470 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1048
-2016-06-02 15:08:57,558 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1048
-2016-06-02 15:08:57,650 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1051
-2016-06-02 15:08:57,707 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1051
-2016-06-02 15:08:57,799 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1054
-2016-06-02 15:08:57,861 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1054
-2016-06-02 15:08:57,951 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1057
-2016-06-02 15:08:58,026 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1057
-2016-06-02 15:08:58,091 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1100
-2016-06-02 15:08:58,138 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1100
-2016-06-02 15:08:58,209 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1103
-2016-06-02 15:08:58,275 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1103
-2016-06-02 15:08:58,369 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1106
-2016-06-02 15:08:58,426 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1106
-2016-06-02 15:08:58,493 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1109
-2016-06-02 15:08:58,559 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1109
-2016-06-02 15:08:58,658 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1112
-2016-06-02 15:08:58,736 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1112
-2016-06-02 15:08:58,825 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1115
-2016-06-02 15:08:58,874 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1115
-2016-06-02 15:08:58,961 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1118
-2016-06-02 15:08:59,005 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1118
-2016-06-02 15:08:59,065 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1121
-2016-06-02 15:08:59,104 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1121
-2016-06-02 15:08:59,170 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1124
-2016-06-02 15:08:59,233 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1124
-2016-06-02 15:08:59,276 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1127
-2016-06-02 15:08:59,328 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1127
-2016-06-02 15:08:59,401 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1130
-2016-06-02 15:08:59,447 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1130
-2016-06-02 15:08:59,513 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1133
-2016-06-02 15:08:59,559 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1133
-2016-06-02 15:08:59,638 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1136
-2016-06-02 15:08:59,676 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1136
-2016-06-02 15:08:59,734 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1139
-2016-06-02 15:08:59,923 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1139
-2016-06-02 15:09:00,039 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1142
-2016-06-02 15:09:00,071 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1142
-2016-06-02 15:09:00,157 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1145
-2016-06-02 15:09:00,226 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1145
-2016-06-02 15:09:00,336 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1148
-2016-06-02 15:09:00,408 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1148
-2016-06-02 15:09:00,480 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1151
-2016-06-02 15:09:00,519 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1151
-2016-06-02 15:09:00,648 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1154
-2016-06-02 15:09:00,696 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1154
-2016-06-02 15:09:00,759 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1157
-2016-06-02 15:09:00,838 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1157
-2016-06-02 15:09:00,920 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1200
-2016-06-02 15:09:00,963 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1200
-2016-06-02 15:09:01,030 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1203
-2016-06-02 15:09:01,079 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1203
-2016-06-02 15:09:01,141 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1206
-2016-06-02 15:09:01,227 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1206
-2016-06-02 15:09:01,306 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1209
-2016-06-02 15:09:01,375 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1209
-2016-06-02 15:09:01,473 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1212
-2016-06-02 15:09:01,493 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1212
-2016-06-02 15:09:01,553 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1215
-2016-06-02 15:09:01,602 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1215
-2016-06-02 15:09:01,664 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1218
-2016-06-02 15:09:01,698 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1218
-2016-06-02 15:09:01,776 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1221
-2016-06-02 15:09:01,838 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1221
-2016-06-02 15:09:01,910 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1224
-2016-06-02 15:09:01,960 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1224
-2016-06-02 15:09:02,026 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1227
-2016-06-02 15:09:02,055 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1227
-2016-06-02 15:09:02,131 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1230
-2016-06-02 15:09:02,180 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1230
-2016-06-02 15:09:02,257 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1233
-2016-06-02 15:09:02,302 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1233
-2016-06-02 15:09:02,369 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1236
-2016-06-02 15:09:02,421 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1236
-2016-06-02 15:09:02,516 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1239
-2016-06-02 15:09:02,592 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1239
-2016-06-02 15:09:02,693 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1242
-2016-06-02 15:09:02,739 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1242
-2016-06-02 15:09:02,782 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1245
-2016-06-02 15:09:02,831 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1245
-2016-06-02 15:09:02,895 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1248
-2016-06-02 15:09:02,959 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1248
-2016-06-02 15:09:03,020 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1251
-2016-06-02 15:09:03,043 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1251
-2016-06-02 15:09:03,082 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1254
-2016-06-02 15:09:03,115 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1254
-2016-06-02 15:09:03,178 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1257
-2016-06-02 15:09:03,240 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1257
-2016-06-02 15:09:03,315 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1300
-2016-06-02 15:09:03,342 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1300
-2016-06-02 15:09:03,427 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1303
-2016-06-02 15:09:03,427 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:01:54,411 - LogsforTrader - INFO - Result Table Created
+2016-06-02 17:01:54,444 - LogsforTrader - INFO - OHLC Table Created
+2016-06-02 17:01:54,444 - LogsforTrader - INFO - Signal Table Created
+2016-06-02 17:01:54,446 - LogsforTrader - INFO - Rina File Created with headers
+2016-06-02 17:01:54,505 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 906
+2016-06-02 17:01:54,588 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 906
+2016-06-02 17:01:54,631 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 909
+2016-06-02 17:01:54,665 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 909
+2016-06-02 17:01:54,710 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 912
+2016-06-02 17:01:54,809 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 912
+2016-06-02 17:01:54,855 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 915
+2016-06-02 17:01:54,888 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 915
+2016-06-02 17:01:54,933 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 918
+2016-06-02 17:01:54,966 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 918
+2016-06-02 17:01:55,010 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 921
+2016-06-02 17:01:55,053 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 921
+2016-06-02 17:01:55,099 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 924
+2016-06-02 17:01:55,131 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 924
+2016-06-02 17:01:55,177 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 927
+2016-06-02 17:01:55,210 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 927
+2016-06-02 17:01:55,255 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 930
+2016-06-02 17:01:55,286 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 930
+2016-06-02 17:01:55,332 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 933
+2016-06-02 17:01:55,365 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 933
+2016-06-02 17:01:55,411 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 936
+2016-06-02 17:01:55,443 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 936
+2016-06-02 17:01:55,487 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 939
+2016-06-02 17:01:55,520 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 939
+2016-06-02 17:01:55,565 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 942
+2016-06-02 17:01:55,598 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 942
+2016-06-02 17:01:55,644 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 945
+2016-06-02 17:01:55,676 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 945
+2016-06-02 17:01:55,720 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 948
+2016-06-02 17:01:55,753 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 948
+2016-06-02 17:01:55,799 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 951
+2016-06-02 17:01:55,842 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 951
+2016-06-02 17:01:55,904 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 954
+2016-06-02 17:01:55,950 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 954
+2016-06-02 17:01:55,987 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 957
+2016-06-02 17:01:56,020 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 957
+2016-06-02 17:01:56,065 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1000
+2016-06-02 17:01:56,098 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1000
+2016-06-02 17:01:56,144 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1003
+2016-06-02 17:01:56,177 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1003
+2016-06-02 17:01:56,221 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1006
+2016-06-02 17:01:56,267 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1006
+2016-06-02 17:01:56,322 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1009
+2016-06-02 17:01:56,354 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1009
+2016-06-02 17:01:56,388 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1012
+2016-06-02 17:01:56,421 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1012
+2016-06-02 17:01:56,456 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1015
+2016-06-02 17:01:56,487 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1015
+2016-06-02 17:01:56,522 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1018
+2016-06-02 17:01:56,555 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1018
+2016-06-02 17:01:56,588 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1021
+2016-06-02 17:01:56,635 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1021
+2016-06-02 17:01:56,665 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1024
+2016-06-02 17:01:56,706 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1024
+2016-06-02 17:01:56,755 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1027
+2016-06-02 17:01:56,789 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1027
+2016-06-02 17:01:56,832 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1030
+2016-06-02 17:01:56,865 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1030
+2016-06-02 17:01:56,910 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1033
+2016-06-02 17:01:56,944 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1033
+2016-06-02 17:01:56,987 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1036
+2016-06-02 17:01:57,020 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1036
+2016-06-02 17:01:57,065 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1039
+2016-06-02 17:01:57,098 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1039
+2016-06-02 17:01:57,142 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1042
+2016-06-02 17:01:57,177 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1042
+2016-06-02 17:01:57,220 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1045
+2016-06-02 17:01:57,255 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1045
+2016-06-02 17:01:57,299 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1048
+2016-06-02 17:01:57,332 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1048
+2016-06-02 17:01:57,377 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1051
+2016-06-02 17:01:57,411 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1051
+2016-06-02 17:01:57,454 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1054
+2016-06-02 17:01:57,487 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1054
+2016-06-02 17:01:57,532 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1057
+2016-06-02 17:01:57,565 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1057
+2016-06-02 17:01:57,605 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1100
+2016-06-02 17:01:57,631 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1100
+2016-06-02 17:01:57,676 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1103
+2016-06-02 17:01:57,710 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1103
+2016-06-02 17:01:57,765 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1106
+2016-06-02 17:01:57,798 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1106
+2016-06-02 17:01:57,842 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1109
+2016-06-02 17:01:57,877 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1109
+2016-06-02 17:01:57,947 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1112
+2016-06-02 17:01:57,976 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1112
+2016-06-02 17:01:58,042 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1115
+2016-06-02 17:01:58,089 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1115
+2016-06-02 17:01:58,174 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1118
+2016-06-02 17:01:58,223 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1118
+2016-06-02 17:01:58,260 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1121
+2016-06-02 17:01:58,309 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1121
+2016-06-02 17:01:58,358 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1124
+2016-06-02 17:01:58,388 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1124
+2016-06-02 17:01:58,437 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1127
+2016-06-02 17:01:58,490 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1127
+2016-06-02 17:01:58,549 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1130
+2016-06-02 17:01:58,576 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1130
+2016-06-02 17:01:58,621 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1133
+2016-06-02 17:01:58,654 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1133
+2016-06-02 17:01:58,698 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1136
+2016-06-02 17:01:58,746 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1136
+2016-06-02 17:01:58,789 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1139
+2016-06-02 17:01:58,821 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1139
+2016-06-02 17:01:58,865 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1142
+2016-06-02 17:01:58,898 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1142
+2016-06-02 17:01:58,954 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1145
+2016-06-02 17:01:58,987 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1145
+2016-06-02 17:01:59,032 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1148
+2016-06-02 17:01:59,065 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1148
+2016-06-02 17:01:59,111 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1151
+2016-06-02 17:01:59,142 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1151
+2016-06-02 17:01:59,229 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1154
+2016-06-02 17:01:59,266 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1154
+2016-06-02 17:01:59,316 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1157
+2016-06-02 17:01:59,344 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1157
+2016-06-02 17:01:59,388 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1200
+2016-06-02 17:01:59,421 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1200
+2016-06-02 17:01:59,473 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1203
+2016-06-02 17:01:59,506 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1203
+2016-06-02 17:01:59,543 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1206
+2016-06-02 17:01:59,576 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1206
+2016-06-02 17:01:59,621 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1209
+2016-06-02 17:01:59,654 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1209
+2016-06-02 17:01:59,700 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1212
+2016-06-02 17:01:59,733 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1212
+2016-06-02 17:01:59,792 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1215
+2016-06-02 17:01:59,822 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1215
+2016-06-02 17:01:59,871 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1218
+2016-06-02 17:01:59,898 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1218
+2016-06-02 17:01:59,944 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1221
+2016-06-02 17:01:59,976 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1221
+2016-06-02 17:02:00,022 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1224
+2016-06-02 17:02:00,053 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1224
+2016-06-02 17:02:00,151 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1227
+2016-06-02 17:02:00,194 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1227
+2016-06-02 17:02:00,262 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1230
+2016-06-02 17:02:00,295 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1230
+2016-06-02 17:02:00,436 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1233
+2016-06-02 17:02:00,480 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1233
+2016-06-02 17:02:00,631 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1236
+2016-06-02 17:02:00,710 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1236
+2016-06-02 17:02:00,755 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1239
+2016-06-02 17:02:00,788 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1239
+2016-06-02 17:02:00,832 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1242
+2016-06-02 17:02:00,881 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1242
+2016-06-02 17:02:00,921 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1245
+2016-06-02 17:02:00,954 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1245
+2016-06-02 17:02:01,000 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1248
+2016-06-02 17:02:01,032 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1248
+2016-06-02 17:02:01,078 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1251
+2016-06-02 17:02:01,109 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1251
+2016-06-02 17:02:01,155 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1254
+2016-06-02 17:02:01,187 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1254
+2016-06-02 17:02:01,233 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1257
+2016-06-02 17:02:01,266 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1257
+2016-06-02 17:02:01,311 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1300
+2016-06-02 17:02:01,344 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1300
+2016-06-02 17:02:01,388 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1303
+2016-06-02 17:02:01,388 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:02:16,456 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1303
+2016-06-02 17:02:16,500 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1306
+2016-06-02 17:02:16,500 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:02:32,477 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1306
+2016-06-02 17:02:32,533 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1309
+2016-06-02 17:02:32,535 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:02:49,786 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1309
+2016-06-02 17:02:49,963 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1312
+2016-06-02 17:02:49,963 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:03:06,648 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1312
+2016-06-02 17:03:06,690 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1315
+2016-06-02 17:03:06,691 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:03:22,937 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1315
+2016-06-02 17:03:22,982 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1318
+2016-06-02 17:03:22,982 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:03:37,993 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1318
+2016-06-02 17:03:38,038 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1321
+2016-06-02 17:03:38,038 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:03:53,094 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1321
+2016-06-02 17:03:53,138 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1324
+2016-06-02 17:03:53,138 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:04:08,651 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1324
+2016-06-02 17:04:08,694 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1327
+2016-06-02 17:04:08,694 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:04:24,644 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1327
+2016-06-02 17:04:24,674 - LogsforTrader - INFO - Writing into Signal Table for Date= 1160525 & Time =1327
+2016-06-02 17:04:24,717 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1330
+2016-06-02 17:04:24,719 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:04:40,230 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1330
+2016-06-02 17:04:40,286 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1333
+2016-06-02 17:04:40,286 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:04:56,020 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1333
+2016-06-02 17:04:56,065 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1336
+2016-06-02 17:04:56,065 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:05:12,154 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1336
+2016-06-02 17:05:12,200 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1339
+2016-06-02 17:05:12,200 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:05:27,878 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1339
+2016-06-02 17:05:27,921 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1342
+2016-06-02 17:05:27,921 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:05:43,088 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1342
+2016-06-02 17:05:43,134 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1345
+2016-06-02 17:05:43,134 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:05:58,279 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1345
+2016-06-02 17:05:58,335 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1348
+2016-06-02 17:05:58,335 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:06:13,490 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1348
+2016-06-02 17:06:13,536 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1351
+2016-06-02 17:06:13,536 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:06:29,170 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1351
+2016-06-02 17:06:29,214 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1354
+2016-06-02 17:06:29,214 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:06:44,226 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1354
+2016-06-02 17:06:44,269 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1357
+2016-06-02 17:06:44,270 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:06:59,516 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1357
+2016-06-02 17:06:59,572 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1400
+2016-06-02 17:06:59,572 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:07:14,539 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1400
+2016-06-02 17:07:14,584 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1404
+2016-06-02 17:07:14,584 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:07:30,140 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1404
+2016-06-02 17:07:30,184 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1407
+2016-06-02 17:07:30,184 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:07:45,219 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1407
+2016-06-02 17:07:45,263 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1410
+2016-06-02 17:07:45,263 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:08:00,230 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1410
+2016-06-02 17:08:00,276 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1413
+2016-06-02 17:08:00,276 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:08:15,486 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1413
+2016-06-02 17:08:15,532 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1416
+2016-06-02 17:08:15,532 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:08:31,499 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1416
+2016-06-02 17:08:31,543 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1419
+2016-06-02 17:08:31,545 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:08:47,012 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1419
+2016-06-02 17:08:47,045 - LogsforTrader - INFO - Writing into Signal Table for Date= 1160525 & Time =1419
+2016-06-02 17:08:47,122 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1424
+2016-06-02 17:08:47,122 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:09:02,502 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1424
+2016-06-02 17:09:02,545 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1427
+2016-06-02 17:09:02,545 - LogsforTrader - INFO - In Trading Algorithm to compute position
+2016-06-02 17:09:17,946 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160525 and Time= 1427
+2016-06-02 17:09:18,003 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160525 and Time= 1430
+2016-06-02 17:09:18,003 - LogsforTrader - INFO - In Trading Algorithm to compute position

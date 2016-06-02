@@ -452,7 +452,6 @@ class Trader:
 
         l_fBarClose = float(self.m_2dlfNonRoundedClose[self.m_iBarNumber - 1][0])
 
-
         if (self.m_liPosition[self.m_iBarNumber - 2] == 0 and self.m_liPosition[self.m_iBarNumber - 1] == -1 and self.m_iPositionInMarket == 0):  # Generate EnterShort1 Signal (Case 1)
             l_TradeDbHandle = self.LoginToTradeDb()  # login into database
             l_TradeDbCursor = l_TradeDbHandle.cursor()
