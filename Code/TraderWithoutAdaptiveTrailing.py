@@ -683,8 +683,18 @@ class Trader:
                 l_iTotalRows=int(l_QueryResult[0][0])
 
                 #-----Fetch last 'TRADINGWINDOWSIZE -1' Positions from database
-                l_iFromRow=l_iTotalRows-(self.m_iTradingWindowSize-1)
-                l_iNumberOfRow=self.m_iTradingWindowSize-1
+                if l_iTotalRows>=self.m_iTradingWindowSize:
+                    l_iFromRow=l_iTotalRows-(self.m_iTradingWindowSize-1)
+                    l_iNumberOfRow=self.m_iTradingWindowSize-1
+                    self.m_iBarNumber = self.m_iTradingWindowSize - 1  # ASSUMTION: The code had crashed after running for at least TradingWindow-1 bars so we have
+                    self.m_iInternalRestartFlag = 1
+
+                else:
+                    l_iFromRow=0
+                    l_iNumberOfRow=l_iTotalRows
+                    self.m_iBarNumber = l_iTotalRows  # ASSUMTION: The code had crashed after running for at least TradingWindow-1 bars so we have
+                    self.m_iInternalRestartFlag = 0
+
 
                 l_TradeDbCursor.execute("select Date, Time, Position,TempPosition from %s LIMIT %s, %s;" % (self.m_strResultTableName, l_iFromRow,l_iNumberOfRow))  # read 1 line form database
                 l_QueryResult=l_TradeDbCursor.fetchall()
@@ -701,12 +711,10 @@ class Trader:
                     self.m_2dlfNonRoundedClose.append([])  # Close for Trades
                     self.m_2dlfNonRoundedClose[-1].append(float(l_tItem[5]))    # we have TradingWindow-1 positions and data
 
-                self.m_iBarNumber = self.m_iTradingWindowSize - 1  # ASSUMTION: The code had crashed after running for at least TradingWindow-1 bars so we have
                                                                 # at least that much data stored in database
                 self.m_iRestartFlag = 0
-                self.m_iInternalRestartFlag = 1
                 #Closing Connection
-                l_TradeDbCursor.Close()
+                l_TradeDbCursor.close()
                 # IN SHORT: Read 'Trading Window-1' bars from database
                 #			seek for new bar from restart point
                 #------------------End of CHANGE 2----------------------------------
@@ -889,8 +897,8 @@ class Trader:
 #=============================Main Function==========================
 #l_strLogFile= 'LogFile'
 # If u want logging info to both console and file then uncomment below
-l_strLogFile=''
-logging.basicConfig(filename=l_strLogFile,level=logging.DEBUG)
+#l_strLogFile=''
+#logging.basicConfig(filename=l_strLogFile,level=logging.DEBUG)
 
 #-----------CHANGE 4---------------------
 l_strConfFile='ConfFile1c.txt'  # Please see the change in Configuration file
