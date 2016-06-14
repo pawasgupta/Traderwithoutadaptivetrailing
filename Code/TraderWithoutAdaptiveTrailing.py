@@ -34,7 +34,7 @@ class Trader:
         
         self.m_iBarTimeInterval = 15  # Bar Size
         self.m_strSessionCloseTime = ''  # Session Close Time (Should have same format as Tick_Time in DataTable)
-        self.m_strSessionBeginTime = ''  # Session Close Time (Should have same format as Tick_Time in DataTable)
+        self.m_strSessionBeginTime = ''  # Session Begin Time (Should have same format as Tick_Time in DataTable)
         self.m_strRunStartDate = ''
         self.m_strRunStopDate = ''
 
@@ -115,7 +115,7 @@ class Trader:
 
         self.m_iBarTimeInterval = l_oConfigFileObject.getint('SectionConf', 'BarSize')  # Bar Size
         self.m_strSessionCloseTime = l_oConfigFileObject.get('SectionConf', 'SessionEnd')  # Session Close Time (Should have same format as Tick_Time in DataTable)
-        self.m_strSessionCloseTime = l_oConfigFileObject.get('SectionConf', 'SessionBegin')  # Session Close Time (Should have same format as Tick_Time in DataTable)
+        self.m_strSessionBeginTime = l_oConfigFileObject.get('SectionConf', 'SessionBegin')  # Session Begin Time (Should have same format as Tick_Time in DataTable)
         self.m_strRunStartDate = l_oConfigFileObject.get('SectionConf', 'RunStartDate')
         self.m_strRunStopDate = l_oConfigFileObject.get('SectionConf', 'RunStopDate')
         #self.m_strRunRestartDate = l_oConfigFileObject.get('SectionConf', 'RunRestartDate')
@@ -757,7 +757,7 @@ class Trader:
                 l_PriceDbCursor.close()
                 # If u dont get data during live mode
                 if (not l_QueryResult):
-                    # if no data then wait fo some time and ping again
+                    # if no data then wait for some time and ping again
                     self.m_LoggerHandle.info('Did not get data for Date %s and Time %s... Going to sleep for 20 seconds.........' %(l_iCurrentDate,l_iCurrentTime))
                     time.sleep(20)
                     continue
@@ -789,6 +789,7 @@ class Trader:
             l_TradeDbCursor= l_TradeDbHandle.cursor()
             l_iTickNumber = l_iTickNumber + 1  # Increment tick number
             self.m_iTotalTicks += 1  # Increment Total Tick number
+            self.m_LoggerHandle.info('Tick Number is' %(l_iTickNumber))
             l_strTickDate = str(l_QueryResult[0][0])
             #print l_strTickDate
             l_strTickTime = str(l_QueryResult[0][1])
@@ -807,6 +808,7 @@ class Trader:
             if (l_iTickNumber == self.m_iBarTimeInterval) or (str(l_strTickTime) == self.m_strSessionCloseTime):  # If BarTimeInterval ticks or Session closing Time then Create the Bar
                 l_strBarDate, l_strBarTime = self.CreateOHLC(l_2dlTickDataMatrix[0:l_iTickNumber][:],l_iTickNumber)  # TickNumber takes care of the fact that there can be situation of  Ticks<BarTimeInterval
                 l_iTickNumber = 0  # reset Tick Count for next bar
+                self.m_LoggerHandle.info('Tick number is reset to 0')
                 if self.m_iBarNumber < self.m_iTradingWindowSize:
                     self.m_liPosition.append(0)
                     self.m_afTempPosition=np.append(self.m_afTempPosition,0.0)
