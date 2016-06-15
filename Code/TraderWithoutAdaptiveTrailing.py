@@ -789,7 +789,7 @@ class Trader:
             l_TradeDbCursor= l_TradeDbHandle.cursor()
             l_iTickNumber = l_iTickNumber + 1  # Increment tick number
             self.m_iTotalTicks += 1  # Increment Total Tick number
-            self.m_LoggerHandle.info('Tick Number is' %(l_iTickNumber))
+            self.m_LoggerHandle.info('Tick Number is %s' %(l_iTickNumber))
             l_strTickDate = str(l_QueryResult[0][0])
             #print l_strTickDate
             l_strTickTime = str(l_QueryResult[0][1])

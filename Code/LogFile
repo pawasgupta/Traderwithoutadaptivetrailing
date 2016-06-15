@@ -15,3 +15,483 @@
 2016-06-13 12:10:57,026 - LogsforTrader - INFO - Did not get data for Date 1160613 and Time 1210... Going to sleep for 20 seconds.........
 2016-06-13 12:11:17,029 - LogsforTrader - INFO - connected to price db
 2016-06-13 12:11:17,030 - LogsforTrader - INFO - Did not get data for Date 1160613 and Time 1211... Going to sleep for 20 seconds.........
+2016-06-15 17:43:08,226 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:08,257 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:08,285 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:08,499 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1000
+2016-06-15 17:43:08,499 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:08,598 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1000
+2016-06-15 17:43:08,602 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:08,605 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:08,608 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:08,677 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1003
+2016-06-15 17:43:08,678 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:08,730 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1003
+2016-06-15 17:43:08,750 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:08,753 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:08,763 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:08,944 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1006
+2016-06-15 17:43:08,944 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:08,966 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1006
+2016-06-15 17:43:08,970 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:08,973 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:08,976 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,069 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1009
+2016-06-15 17:43:09,069 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,210 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1009
+2016-06-15 17:43:09,213 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,216 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,219 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,299 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1012
+2016-06-15 17:43:09,299 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,345 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1012
+2016-06-15 17:43:09,348 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,351 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,355 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,411 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1015
+2016-06-15 17:43:09,411 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,431 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1015
+2016-06-15 17:43:09,436 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,438 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,443 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,467 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1018
+2016-06-15 17:43:09,467 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,487 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1018
+2016-06-15 17:43:09,490 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,493 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,496 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,543 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1021
+2016-06-15 17:43:09,543 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,576 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1021
+2016-06-15 17:43:09,586 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,592 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,595 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,644 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1024
+2016-06-15 17:43:09,644 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,665 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1024
+2016-06-15 17:43:09,668 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,671 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,674 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,732 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1027
+2016-06-15 17:43:09,732 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,755 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1027
+2016-06-15 17:43:09,757 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,760 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,765 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,809 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1030
+2016-06-15 17:43:09,809 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,832 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1030
+2016-06-15 17:43:09,835 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,838 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,842 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,865 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1033
+2016-06-15 17:43:09,865 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,910 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1033
+2016-06-15 17:43:09,913 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,915 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,920 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:09,941 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1036
+2016-06-15 17:43:09,943 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:09,966 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1036
+2016-06-15 17:43:09,969 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:09,971 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:09,974 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,005 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1039
+2016-06-15 17:43:10,006 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,042 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1039
+2016-06-15 17:43:10,046 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,049 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,052 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,075 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1042
+2016-06-15 17:43:10,076 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,121 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1042
+2016-06-15 17:43:10,125 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,128 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,131 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,154 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1045
+2016-06-15 17:43:10,154 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,177 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1045
+2016-06-15 17:43:10,180 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,183 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,186 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,232 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1048
+2016-06-15 17:43:10,233 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,278 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1048
+2016-06-15 17:43:10,280 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,283 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,288 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,309 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1051
+2016-06-15 17:43:10,309 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,344 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1051
+2016-06-15 17:43:10,346 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,349 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,352 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,398 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1054
+2016-06-15 17:43:10,398 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,444 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1054
+2016-06-15 17:43:10,447 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,450 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,453 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,476 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1057
+2016-06-15 17:43:10,476 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,530 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1057
+2016-06-15 17:43:10,533 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,536 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,540 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,565 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1100
+2016-06-15 17:43:10,565 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,588 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1100
+2016-06-15 17:43:10,592 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,595 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,598 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,621 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1104
+2016-06-15 17:43:10,621 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,654 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1104
+2016-06-15 17:43:10,657 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,661 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,664 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,721 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1107
+2016-06-15 17:43:10,721 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,743 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1107
+2016-06-15 17:43:10,746 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,750 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,753 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,799 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1110
+2016-06-15 17:43:10,799 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,822 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1110
+2016-06-15 17:43:10,825 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,828 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,831 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,855 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1113
+2016-06-15 17:43:10,855 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,877 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1113
+2016-06-15 17:43:10,880 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,882 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,885 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,910 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1116
+2016-06-15 17:43:10,911 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:10,944 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1116
+2016-06-15 17:43:10,947 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:10,950 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:10,953 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:10,976 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1119
+2016-06-15 17:43:10,976 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,000 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1119
+2016-06-15 17:43:11,003 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,006 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,009 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,042 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1122
+2016-06-15 17:43:11,042 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,065 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1122
+2016-06-15 17:43:11,069 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,072 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,075 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,121 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1125
+2016-06-15 17:43:11,121 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,148 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1125
+2016-06-15 17:43:11,153 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,155 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,160 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,187 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1128
+2016-06-15 17:43:11,187 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,210 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1128
+2016-06-15 17:43:11,213 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,217 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,220 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,243 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1131
+2016-06-15 17:43:11,243 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,266 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1131
+2016-06-15 17:43:11,269 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,273 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,276 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,322 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1134
+2016-06-15 17:43:11,322 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,344 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1134
+2016-06-15 17:43:11,348 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,351 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,354 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,377 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1137
+2016-06-15 17:43:11,377 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,414 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1137
+2016-06-15 17:43:11,437 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,441 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,446 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,542 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1140
+2016-06-15 17:43:11,542 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,588 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1140
+2016-06-15 17:43:11,592 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,595 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,598 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,644 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1143
+2016-06-15 17:43:11,644 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,665 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1143
+2016-06-15 17:43:11,668 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,671 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,674 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,698 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1146
+2016-06-15 17:43:11,700 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,755 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1146
+2016-06-15 17:43:11,757 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,762 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,765 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,786 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1149
+2016-06-15 17:43:11,788 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,809 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1149
+2016-06-15 17:43:11,813 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,816 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,819 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,865 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1152
+2016-06-15 17:43:11,865 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,888 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1152
+2016-06-15 17:43:11,891 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,894 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,898 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,921 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1155
+2016-06-15 17:43:11,921 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:11,944 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1155
+2016-06-15 17:43:11,947 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:11,950 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:11,953 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:11,976 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1158
+2016-06-15 17:43:11,976 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,000 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1158
+2016-06-15 17:43:12,003 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,006 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,009 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,032 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1202
+2016-06-15 17:43:12,032 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,055 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1202
+2016-06-15 17:43:12,059 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,062 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,065 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,088 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1205
+2016-06-15 17:43:12,088 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,109 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1205
+2016-06-15 17:43:12,114 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,117 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,119 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,142 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1208
+2016-06-15 17:43:12,142 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,165 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1208
+2016-06-15 17:43:12,170 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,173 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,176 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,198 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1211
+2016-06-15 17:43:12,198 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,221 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1211
+2016-06-15 17:43:12,226 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,229 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,232 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,255 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1214
+2016-06-15 17:43:12,255 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,276 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1214
+2016-06-15 17:43:12,280 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,285 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,288 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,309 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1218
+2016-06-15 17:43:12,309 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,332 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1218
+2016-06-15 17:43:12,335 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,338 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,342 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,365 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1221
+2016-06-15 17:43:12,365 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,388 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1221
+2016-06-15 17:43:12,391 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,395 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,398 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,451 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1224
+2016-06-15 17:43:12,451 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,500 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1224
+2016-06-15 17:43:12,503 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,506 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,509 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,555 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1227
+2016-06-15 17:43:12,555 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,578 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1227
+2016-06-15 17:43:12,581 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,584 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,586 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,632 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1230
+2016-06-15 17:43:12,632 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,655 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1230
+2016-06-15 17:43:12,658 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,661 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,667 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,687 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1234
+2016-06-15 17:43:12,688 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,710 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1234
+2016-06-15 17:43:12,713 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,717 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,720 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,766 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1238
+2016-06-15 17:43:12,766 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,788 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1238
+2016-06-15 17:43:12,792 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,793 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,798 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,822 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1241
+2016-06-15 17:43:12,822 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,867 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1241
+2016-06-15 17:43:12,869 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,874 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,884 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,911 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1244
+2016-06-15 17:43:12,911 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,933 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1244
+2016-06-15 17:43:12,936 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:12,938 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:12,941 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:12,980 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1247
+2016-06-15 17:43:12,980 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:12,999 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1247
+2016-06-15 17:43:13,003 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,006 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,009 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,055 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1250
+2016-06-15 17:43:13,055 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,076 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1250
+2016-06-15 17:43:13,079 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,082 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,085 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,109 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1253
+2016-06-15 17:43:13,109 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,132 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1253
+2016-06-15 17:43:13,135 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,138 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,141 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,177 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1256
+2016-06-15 17:43:13,177 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,198 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1256
+2016-06-15 17:43:13,203 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,206 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,209 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,243 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1259
+2016-06-15 17:43:13,244 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,266 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1259
+2016-06-15 17:43:13,269 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,272 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,275 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,299 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1302
+2016-06-15 17:43:13,299 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,321 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1302
+2016-06-15 17:43:13,325 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,326 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,329 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,377 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1305
+2016-06-15 17:43:13,377 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,398 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1305
+2016-06-15 17:43:13,404 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,408 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,413 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,450 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1308
+2016-06-15 17:43:13,450 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,493 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1308
+2016-06-15 17:43:13,497 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,500 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,503 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,543 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1311
+2016-06-15 17:43:13,543 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,565 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1311
+2016-06-15 17:43:13,569 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,573 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,576 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,598 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1314
+2016-06-15 17:43:13,598 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,621 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1314
+2016-06-15 17:43:13,625 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,628 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,632 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,654 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1317
+2016-06-15 17:43:13,654 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,677 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1317
+2016-06-15 17:43:13,680 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,684 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,687 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,710 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1320
+2016-06-15 17:43:13,710 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,732 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1320
+2016-06-15 17:43:13,736 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,739 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,742 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,765 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1323
+2016-06-15 17:43:13,766 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,788 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1323
+2016-06-15 17:43:13,790 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,793 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,796 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,821 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1326
+2016-06-15 17:43:13,821 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,844 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1326
+2016-06-15 17:43:13,846 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,849 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,852 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,891 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1329
+2016-06-15 17:43:13,891 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,921 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1329
+2016-06-15 17:43:13,924 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,927 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,930 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:13,953 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1332
+2016-06-15 17:43:13,954 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:13,983 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1332
+2016-06-15 17:43:13,986 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:13,990 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:13,993 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,020 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1335
+2016-06-15 17:43:14,022 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,043 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1335
+2016-06-15 17:43:14,046 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,049 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,052 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,075 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1338
+2016-06-15 17:43:14,076 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,099 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1338
+2016-06-15 17:43:14,102 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,107 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,109 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,132 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1341
+2016-06-15 17:43:14,132 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,154 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1341
+2016-06-15 17:43:14,158 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,161 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,164 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,187 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1344
+2016-06-15 17:43:14,187 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,210 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1344
+2016-06-15 17:43:14,213 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,217 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,220 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,243 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1347
+2016-06-15 17:43:14,243 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,266 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1347
+2016-06-15 17:43:14,269 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,273 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,276 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,299 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1350
+2016-06-15 17:43:14,299 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,322 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1350
+2016-06-15 17:43:14,325 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,328 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,331 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,355 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1353
+2016-06-15 17:43:14,355 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,378 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1353
+2016-06-15 17:43:14,381 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,384 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,387 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,410 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1356
+2016-06-15 17:43:14,411 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,433 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1356
+2016-06-15 17:43:14,436 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,438 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,443 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,466 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1359
+2016-06-15 17:43:14,466 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,499 - LogsforTrader - INFO - Writing Position in Result Table for Date= 1160526 and Time= 1359
+2016-06-15 17:43:14,502 - LogsforTrader - INFO - Tick Number is 1
+2016-06-15 17:43:14,505 - LogsforTrader - INFO - Tick Number is 2
+2016-06-15 17:43:14,507 - LogsforTrader - INFO - Tick Number is 3
+2016-06-15 17:43:14,532 - LogsforTrader - INFO - Writing into OHLC Table for Date= 1160526 and Time= 1402
+2016-06-15 17:43:14,532 - LogsforTrader - INFO - Tick number is reset to 0
+2016-06-15 17:43:14,532 - LogsforTrader - INFO - In Trading Algorithm to compute position
