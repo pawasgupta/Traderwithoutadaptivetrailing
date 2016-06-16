@@ -730,6 +730,13 @@ class Trader:
                 l_iCurrentDate=int(time.strftime("%Y%m%d")) - 19000000   #Change_C
                 l_iCurrentTime=int(time.strftime("%H%M"))
 
+
+                if (l_iCurrentTime < int(self.m_strSessionBeginTime)) or (l_iCurrentTime>int(self.m_strSessionCloseTime)):
+                    self.m_LoggerHandle.info("No Session time...sleeping for 20 secs")
+                    time.sleep(20)
+                    continue
+
+
                 if (l_iCurrentDate==l_iDateForPreviousTick and l_iCurrentTime==l_iTimeForPreviousTick):
                     self.m_LoggerHandle.info("No new date and time...sleeping for 20 secs")
                     time.sleep(20)

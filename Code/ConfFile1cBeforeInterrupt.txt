@@ -18,7 +18,7 @@ RunStartDate:1160526
 RunStopDate: 1160527
 SessionBegin: 906
 SessionEnd : 1700
-RestartFlag : 1
+RestartFlag : 0
 LogFileName : LogFile
 NumberofLots : 5
 LotSize : 1000
