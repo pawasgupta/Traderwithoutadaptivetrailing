@@ -1,0 +1,24 @@
+[SectionConf]
+PriceDBName: data 
+PriceTable : usdinr
+PriceDbUserName :pricereader
+PriceDbPassword : PDBReader@848
+PriceDbHost : 172.16.3.245
+TradeDbName: JD_TWADT_Test
+TradeDbUserName : pawas
+TradeDbPassword : pawas123
+TradeDbHost : 192.168.1.131
+ResultTable : tbl_TrainingResultstestlive20160621
+SignalTable : tbl_TrainingSignalstestlive20160621
+OHLCTable : tbl_OHLCPeriodModtestlive20160621
+RinaFileName : RinaCSVOutputPeriodModtestlive20160621
+BarSize : 15
+LiveMode : 1
+RunStartDate:1160526 
+RunStopDate: 1160527
+SessionBegin: 906
+SessionEnd : 1700
+RestartFlag : 0
+LogFileName : LogFile20160621
+NumberofLots : 5
+LotSize : 1000
