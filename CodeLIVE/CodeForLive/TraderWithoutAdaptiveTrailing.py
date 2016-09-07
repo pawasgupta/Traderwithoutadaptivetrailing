@@ -9,6 +9,7 @@ import math
 import time
 import ConfigParser
 import logging
+import csv
 
 #-------------Class Defination Start---------
 
@@ -42,18 +43,13 @@ class Trader:
 
         self.m_LoggerHandle=''
         self.m_strLogFileName=''
-
-        #-----------CHANGE 1--------------------- ( Changes made to resolve crashing issue )
-        self.m_strRunRestartDate = ''   # Enter the date when u r restarting the code from
-        self.m_strRunRestartTime = ''   # Enter the time when u r restarting the code from
-                                        # for example
-                                        # if u had last position for 21/12 and 10:15 and want to restart from 10:16
-                                        # u will get next position for 21/12 and 10:30 (Bar size is 15)
         self.m_iRestartFlag = 0	    # 1 if u r restarting after the crash
                                     # 0 if u r starting normally
         self.m_iInternalRestartFlag = 0   # a flag that initialize self.m_2dafFeatureMatrix differently in case u restart
                                         # it will be set and reset automatically
-        #--------------End of CHANGE 1-----------------------------
+        self.m_iVirtualExitAfterRestart=0
+
+
         self.m_iTotalTicks = 0  # Counts the Total Ticks
         self.m_iBarNumber = 0  # Time Instant or  Bar Count
         self.m_2dlfOHLCMatrix = []  # Contains Date, Time, O, H, L, C for Each bar
@@ -118,8 +114,7 @@ class Trader:
         self.m_strSessionBeginTime = l_oConfigFileObject.get('SectionConf', 'SessionBegin')  # Session Begin Time (Should have same format as Tick_Time in DataTable)
         self.m_strRunStartDate = l_oConfigFileObject.get('SectionConf', 'RunStartDate')
         self.m_strRunStopDate = l_oConfigFileObject.get('SectionConf', 'RunStopDate')
-        #self.m_strRunRestartDate = l_oConfigFileObject.get('SectionConf', 'RunRestartDate')
-        #self.m_strRunRestartTime = l_oConfigFileObject.get('SectionConf', 'RunRestartTime')
+
         self.m_iRestartFlag = int(l_oConfigFileObject.get('SectionConf', 'RestartFlag'))
         self.m_iLiveMode = int(l_oConfigFileObject.get('SectionConf', 'LiveMode'))
 
@@ -150,8 +145,8 @@ class Trader:
         l_fSigma = 1
         return (math.exp((-1 * (l_fNorm ** 2)) / (2 * l_fSigma * l_fSigma)))
 
-     #--------------Change_B3-----------------
-    # Retain data for last 3*TradingWindowSize bars
+
+    # Retain data for last 2*TradingWindowSize bars if the size of matrices increases beyond a point
     def FlushData(self):
         self.m_liPosition = self.m_liPosition[3*self.m_iTradingWindowSize:5*self.m_iTradingWindowSize]
         self.m_afCumulativeProfit = self.m_afCumulativeProfit[3*self.m_iTradingWindowSize:5*self.m_iTradingWindowSize]
@@ -372,10 +367,9 @@ class Trader:
         l_afSmoothPrice = self.MovingAverage(l_afTypicalPrice, 7)  # compute Features
         l_afFeatureVector = l_afSmoothPrice
 
-        if (self.m_iBarNumber == self.m_iTradingWindowSize):  # Initialise during 1st call
+        if (self.m_iBarNumber == self.m_iTradingWindowSize and self.m_iRinaInternalFlag==0):  # Initialise during 1st call
             self.m_afProfit = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
             self.m_afCumulativeProfit = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
-            #self.m_afTempPosition = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
             self.m_2dafFeatureMatrix = np.zeros((self.m_iBarsBack, self.m_iTradingWindowSize), dtype='float64')
             self.m_afReturns = np.zeros(self.m_iTradingWindowSize - 1, dtype='float64')
             l_iIndex = 1
@@ -384,21 +378,27 @@ class Trader:
                 l_iIndex = l_iIndex + 1
             self.m_2dafWeights = np.zeros((self.m_iBarsBack, self.m_iTradingWindowSize - 1), dtype='float64')
 
-            # -----------------CHANGE 3----------------------------------
-            # ---If restarting, initialize the feature matrix from old prices that have been read from the OHLC table of the database
-            if self.m_iInternalRestartFlag == 1:
-                # for l_iloopvar in range (self.m_iBarsBack,self.m_iTradingWindowSize):
-                #    self.m_2dafFeatureMatrix[:,l_iloopvar]=l_afFeatureVector[l_iloopvar-self.m_i_BarsBack:l_iloopvar]
-                for l_iloopvar in range (0,self.m_iBarsBack):
-                    self.m_2dafFeatureMatrix[l_iloopvar,self.m_iBarsBack-l_iloopvar:self.m_iTradingWindowSize]=l_afFeatureVector[0:self.m_iTradingWindowSize-self.m_iBarsBack+l_iloopvar]
-                self.m_iRestartFlag=0
-            #-----------------END of CHANGE 3----------------------------------
+        # ---If restarting, initialize the feature matrix from old prices that have been read from the OHLC table of the database
+        if self.m_iInternalRestartFlag == 1:
+            self.m_afProfit = np.zeros(self.m_iBarNumber - 1, dtype='float64')
+            self.m_afCumulativeProfit = np.zeros(self.m_iBarNumber - 1, dtype='float64')
+            #self.m_2dafFeatureMatrix = np.zeros((self.m_iBarsBack, self.m_iTradingWindowSize), dtype='float64')
+            self.m_afReturns = np.zeros(self.m_iBarNumber - 1, dtype='float64')
+            l_iIndex = 1
+            while (l_iIndex < self.m_iBarNumber - 1):  # loop to assign all the values of r,  cannot put abcd assignment here because it has to be in the same loop as the weight update
+                self.m_afReturns[l_iIndex] = l_afClosePrice[l_iIndex] - l_afClosePrice[l_iIndex - 1]
+                l_iIndex = l_iIndex + 1
+            self.m_2dafWeights = np.zeros((self.m_iBarsBack, self.m_iBarNumber - 1), dtype='float64')
+
+            self.m_2dafFeatureMatrix = np.zeros((self.m_iBarsBack, self.m_iBarNumber), dtype='float64')
+            for l_iloopvar in range(self.m_iBarsBack,self.m_iBarNumber):
+                self.m_2dafFeatureMatrix[:,l_iloopvar] =np.transpose(l_afFeatureVector[l_iloopvar-self.m_iBarsBack:l_iloopvar])
+            self.m_2dafFeatureMatrix[:, 0:self.m_iBarsBack] = self.m_2dafFeatureMatrix[:,[self.m_iBarsBack]]
+            self.m_iInternalRestartFlag=0
 
         # ---appending values corresponding to each bar-------
         #  ---append in each call---------------------
         self.m_2dafFeatureMatrix = np.hstack((self.m_2dafFeatureMatrix, np.reshape(l_afFeatureVector[self.m_iBarNumber - self.m_iBarsBack:self.m_iBarNumber],[-1, 1])))  # appending a column to Feature Matrix
-        #tot = np.sum(self.m_2dafFeatureMatrix, axis = 0, dtype = 'float64')
-        #self.m_2dafFeatureMatrix[:, self.m_iBarNumber] = self.m_2dafFeatureMatrix[:, self.m_iBarNumber]/tot[self.m_iBarNumber]
 
         self.m_afReturns = np.append(self.m_afReturns, (l_afClosePrice[self.m_iBarNumber - 1] - l_afClosePrice[self.m_iBarNumber - 2]))
 
@@ -463,6 +463,8 @@ class Trader:
             self.m_iTradeType = 1
             self.m_fMarketEnterPrice = l_fBarClose
             self.m_iPositionInMarket = -1
+
+
             self.m_LoggerHandle.info('Writing into Signal Table for Date= %s & Time =%s' %(l_strBarDate,l_strBarTime))
             l_TradeDbCursor.close()
 
@@ -605,7 +607,7 @@ class Trader:
         l_FileId = open(self.m_strRinaFileName, "a")
 
         if (l_iDataSize > 0):
-            l_iCounter = 0;
+            l_iCounter = 0
             while (l_iCounter < l_iDataSize):
                 #Entries in Signal table alternate for Entry and Exit
                 if (self.m_iRinaInternalFlag == 1):  # Entry  Signal
@@ -666,60 +668,403 @@ class Trader:
         print "Start time " + time.strftime("%X")
 
         while (l_iProgramFlag == 1):
+
+            #==================================================================================
             #-----------------If Restarting----------------------------------
             if (self.m_iRestartFlag==1 and self.m_iLiveMode ==1): # If u r restarting then
-                #--Count the number of positions that were stored in database before u crashed
+
                 self.m_LoggerHandle.info('-------------------------------------------------')
                 self.m_LoggerHandle.info('-------------------------------------------------')
                 self.m_LoggerHandle.info('--------------------Restarting-------------------')
                 self.m_liPosition=[]
                 self.m_afTempPosition = np.zeros(0, dtype='float64')
-                # Opening connection
-                l_TradeDbHandle = self.LoginToTradeDb()  # login into database
-                l_TradeDbCursor= l_TradeDbHandle.cursor()
+
+                #---------Opening Connnection for trade DB-----
+                self.m_LoggerHandle.info("Connecting to Trade DB to load necessary data...")
+                l_iNoTradeDbConnectionFlag=0
+                l_TradeDbHandle= None
+                try:
+                    l_TradeDbHandle = self.LoginToTradeDb()  # login into database
+                except:
+                    self.m_LoggerHandle.info("Exception thrown in db connection")
+                    l_iNoTradeDbConnectionFlag=1
+
+                # If u fail to connect (server is off), go to sleep
+                # If server is off, it may happen that an exception is thrown or we get nothing in db handle
+                if (l_iNoTradeDbConnectionFlag) or not(l_TradeDbHandle):
+                    self.m_LoggerHandle.info('failed to connect to trade db..cant proceed...trying again after 20 seconds')
+                    time.sleep(20)
+                    continue
+                l_TradeDbCursor = l_TradeDbHandle.cursor()
+
+
+                self.m_LoggerHandle.info('connected to trade db')
+                self.m_LoggerHandle.info("Loading necessary data...")
+
+                #----------------Count the number of positions that were stored in database before u crashed
+                # checking the discrepency bewtween OHLC table and Position Table
 
                 l_TradeDbCursor.execute("select count(*) from %s" % (self.m_strResultTableName))  # read 1 line form database
-                l_QueryResult=l_TradeDbCursor.fetchall()  # Query result is a tuple
-                l_iTotalRows=int(l_QueryResult[0][0])
+                l_QueryResult = l_TradeDbCursor.fetchall()  # Query result is a tuple
+                l_iTotalRows = int(l_QueryResult[0][0])
+                # chddcking if number of OHLC bars == number of Positions
+                l_TradeDbCursor.execute("select count(*) from %s" % (self.m_strOHLCTableName))  # read 1 line form database
+                l_QueryResult = l_TradeDbCursor.fetchall()  # Query result is a tuple
+                l_iTotalOHLCRows = int(l_QueryResult[0][0])
 
-                #-----Fetch last 'TRADINGWINDOWSIZE -1' Positions from database
-                if l_iTotalRows>=self.m_iTradingWindowSize:
-                    l_iFromRow=l_iTotalRows-(self.m_iTradingWindowSize-1)
-                    l_iNumberOfRow=self.m_iTradingWindowSize-1
-                    self.m_iBarNumber = self.m_iTradingWindowSize - 1  # ASSUMTION: The code had crashed after running for at least TradingWindow-1 bars so we have
+                if l_iTotalRows<> l_iTotalOHLCRows: # if not equal, match the 2
+                    l_TradeDbCursor.execute("select * from %s LIMIT %s,1" % (self.m_strResultTableName, l_iTotalRows-1))  # read 1 line form database
+                    l_QueryResult = l_TradeDbCursor.fetchall()
+                    l_iDateLastInResultTable=int(l_QueryResult[0][0])
+                    l_iTimeLastInResultTable=int(l_QueryResult[0][1])
+                    l_TradeDbCursor.execute("delete from %s where (date = %s and time > %s)  or (date>%s)" % (self.m_strOHLCTableName, l_iDateLastInResultTable, l_iTimeLastInResultTable, l_iDateLastInResultTable))  # read 1 line form database
+                    self.m_LoggerHandle.info('Deleted Extra Rows from OHLC table...')
+                    l_TradeDbHandle.commit()
+                    #l_TradeDbHandle.close()
+                #------------------------------------------------------------------------------------------------
+
+                #---------------Fetch Required Data from database-------------------------------------------------
+                if l_iTotalRows>=5*self.m_iTradingWindowSize:
+                    l_iNumberOfRow = 5*self.m_iTradingWindowSize - 1
+                    l_iFromRow = l_iTotalRows - (l_iNumberOfRow)
+                    self.m_iBarNumber = l_iNumberOfRow # ASSUMPTION: The code had crashed after running for more than 5*TradingWindow bars
+                    self.m_iInternalRestartFlag = 1
+
+                elif l_iTotalRows < 5 * self.m_iTradingWindowSize and l_iTotalRows >= self.m_iTradingWindowSize:
+                    l_iNumberOfRow = l_iTotalRows
+                    l_iFromRow = 0
+                    self.m_iBarNumber = l_iNumberOfRow  # ASSUMPTION: The code had crashed after running for less than 5*TradingWindow bars
+                                                        # but more than TradningWindow Bars
                     self.m_iInternalRestartFlag = 1
 
                 else:
+                    l_iNumberOfRow = l_iTotalRows
                     l_iFromRow=0
-                    l_iNumberOfRow=l_iTotalRows
-                    self.m_iBarNumber = l_iTotalRows  # ASSUMTION: The code had crashed after running for at least TradingWindow-1 bars so we have
+                    self.m_iBarNumber = l_iNumberOfRow  # ASSUMPTION: The code had crashed after running for less than TradingWindow bars
                     self.m_iInternalRestartFlag = 0
 
-
+                # Fetch the required number of positions, Temp Positions and OHLC from the database
+                # Fetch Positions
+                self.m_LoggerHandle.info("Fetching Old Postions...")
                 l_TradeDbCursor.execute("select Date, Time, Position,TempPosition from %s LIMIT %s, %s;" % (self.m_strResultTableName, l_iFromRow,l_iNumberOfRow))  # read 1 line form database
                 l_QueryResult=l_TradeDbCursor.fetchall()
                 for l_tItem in l_QueryResult: # item is tuple and local
                     self.m_liPosition.append(int(l_tItem[2]))
                     self.m_afTempPosition = np.append(self.m_afTempPosition, float(l_tItem[3]))
-
-                #-----Fetch last 'TRADINGWINDOWSIZE -1' Bars from database
+                l_iLastPositionBeforeCrash=(int(l_tItem[2]))
+                l_iLastTempPostionBeforeCrash=float(l_tItem[3])
+                #-----Fetch OHLC from database
+                self.m_LoggerHandle.info("Fetching Old Prices...")
                 l_TradeDbCursor.execute("select Date, Time, Open,Low,High,Close from %s LIMIT %s, %s;" % (self.m_strOHLCTableName,l_iFromRow,l_iNumberOfRow))  # read 1 line form database
                 l_QueryResult=l_TradeDbCursor.fetchall()
                 for l_tItem in l_QueryResult:
                     self.m_2dlfOHLCMatrix.append([])
                     self.m_2dlfOHLCMatrix[-1].extend([l_tItem[0],l_tItem[1],l_tItem[2],l_tItem[3],l_tItem[4],l_tItem[5]])
                     self.m_2dlfNonRoundedClose.append([])  # Close for Trades
-                    self.m_2dlfNonRoundedClose[-1].append(float(l_tItem[5]))    # we have TradingWindow-1 positions and data
+                    self.m_2dlfNonRoundedClose[-1].append(float(l_tItem[5]))
+                #-----------------------------------------------------------------------------------------------------------------
 
-                                                                # at least that much data stored in database
+
+                #---------------------Check if last trade was open
+                l_TradeDbCursor.execute("select count(*) from %s" % (self.m_strSignalTableName))  # read 1 line form database
+                l_QueryResult = l_TradeDbCursor.fetchall()  # Query result is a tuple
+                l_iTotalSignalsInSignalTable = int(l_QueryResult[0][0])
+                if l_iTotalSignalsInSignalTable>0: # If there is any signal
+                    l_iFromRow=l_iTotalSignalsInSignalTable-1
+                    l_iNumberOfRow=1
+                    
+                    # Fetch last signal from signal table
+                    l_TradeDbCursor.execute("select * from %s LIMIT %s, %s;" % (self.m_strSignalTableName, l_iFromRow, l_iNumberOfRow))  # read 1 line form database
+                    l_QueryResult = l_TradeDbCursor.fetchall()
+
+                    l_strDateLastInSignalTable=str(l_QueryResult[0][0])
+                    l_strTimeLastInSignalTable=str(l_QueryResult[0][1])
+                    l_fPriceLastInSignalTable=float(l_QueryResult[0][2])
+                    l_strRemarksLastInSignalTable = str(l_QueryResult[0][5])
+
+                    #If the last signal corresponds to Open Trade
+                    if ('_LE_' in l_strRemarksLastInSignalTable.upper()):
+                        self.m_iPositionInMarket=1
+                        self.m_fMarketEnterPrice=l_fPriceLastInSignalTable
+                        if ('LONG1' in l_strRemarksLastInSignalTable.upper()):
+                            self.m_iTradeType=1
+                        elif ('LONG2' in l_strRemarksLastInSignalTable.upper()):
+                            self.m_iTradeType = 2
+                        #Check the status of trailing before it crashed, set appropriate flags
+                        #Check if the trail was ON. It it was, follow the trail
+                        l_iCheckLongTrailFlag=0
+                        for l_lRowOfOHLC in self.m_2dlfOHLCMatrix:
+                            if (l_strDateLastInSignalTable in l_lRowOfOHLC) and (l_strTimeLastInSignalTable in l_lRowOfOHLC):
+                                #print "hello1"
+                                self.m_LoggerHandle.info("matched trade's date %s and time %s....now checking for trail of Long position" % (l_lRowOfOHLC[0], l_lRowOfOHLC[1]))
+                                l_iCheckLongTrailFlag=1
+
+                            if (l_iCheckLongTrailFlag) and self.m_iTrailFlag == 0 and (l_lRowOfOHLC[5]>= l_fPriceLastInSignalTable + l_fPriceLastInSignalTable*0.01) :
+                                self.m_iTrailFlag=1
+                                self.m_fTrailPrice= l_lRowOfOHLC[5]
+                                self.m_LoggerHandle.info("Trail ON on Date %s and Time %s" % (l_lRowOfOHLC[0], l_lRowOfOHLC[1]))
+
+
+                            if self.m_iTrailFlag ==1 and (l_lRowOfOHLC[5]>= self.m_fTrailPrice):
+                                self.m_fTrailPrice = l_lRowOfOHLC[5]
+                                self.m_LoggerHandle.info(
+                                    "Trailing on Date %s and Time %s" % (l_lRowOfOHLC[0], l_lRowOfOHLC[1]))
+                    # Do the same with Short Open trade
+                    if ('_SE_' in l_strRemarksLastInSignalTable.upper()):
+                        self.m_iPositionInMarket = -1
+                        self.m_fMarketEnterPrice = l_fPriceLastInSignalTable
+                        if ('SHORT1' in l_strRemarksLastInSignalTable.upper()):
+                            self.m_iTradeType = 1
+                        elif ('SHORT2' in l_strRemarksLastInSignalTable.upper()):
+                            self.m_iTradeType = 2
+
+                        l_iCheckShortTrailFlag = 0
+                        for l_lRowOfOHLC in self.m_2dlfOHLCMatrix:
+
+                            if (l_strDateLastInSignalTable in l_lRowOfOHLC) and (l_strTimeLastInSignalTable in l_lRowOfOHLC):
+                                l_iCheckShortTrailFlag = 1
+                                self.m_LoggerHandle.info("matched trade's date %s and time %s....now checking for trail of short position" %(l_lRowOfOHLC[0], l_lRowOfOHLC[1]))
+
+                            if (l_iCheckShortTrailFlag)and self.m_iTrailFlag == 0 and (l_lRowOfOHLC[5] <= l_fPriceLastInSignalTable - l_fPriceLastInSignalTable * 0.01):
+                                self.m_iTrailFlag = -1
+                                self.m_fTrailPrice = l_lRowOfOHLC[5]
+                                self.m_LoggerHandle.info("Trail ON on Date %s and Time %s" %(l_lRowOfOHLC[0], l_lRowOfOHLC[1]))
+                            if self.m_iTrailFlag == -1 and (l_lRowOfOHLC[5] <= self.m_fTrailPrice):
+                                self.m_fTrailPrice = l_lRowOfOHLC[5]
+                                self.m_LoggerHandle.info("Trailing on Date %s and Time %s" % (l_lRowOfOHLC[0], l_lRowOfOHLC[1]))
+
+                    #-------------------------------------------------------------------------------------
+
+                    #--------------------------------------------------------------------------------------
+                    #Adding a virtual environment that checks for the trail/hit or SL hit during the missed period
+                    # It is basically helpful for a time when the trader goes off for a long period of time
+
+                    l_iCrashDate=int(self.m_2dlfOHLCMatrix[-1][0]) # Last Date Before crash
+                    l_iCrashTime=int(self.m_2dlfOHLCMatrix[-1][1]) # Lst Time Before crash
+                    l_iRestartDate=int(time.strftime("%Y%m%d")) - 19000000  # Current date
+                    l_iRestartTime=int(time.strftime("%H%M")) # Current time
+                    # Fetch missing data from price DB (from crash date till restart Date)
+                    l_iNoPriceDbConnectionFlag = 0
+                    l_PriceDbHandle = None
+
+                    try:
+                        l_PriceDbHandle = self.LoginToPriceDb()  # login into database
+                    except:
+                        self.m_LoggerHandle.info("Exception thrown in db connection")
+                        l_iNoPriceDbConnectionFlag = 1
+
+                    # If u fail to connect (server is off), skip the step
+                    # If server is off, it may happen that an exception is thrown or we get nothing in db handle
+                    if (l_iNoPriceDbConnectionFlag) or not (l_PriceDbHandle):
+                        # If u dont connect, miss the trail check and bar formation
+                        self.m_LoggerHandle.info('failed to connect to price db...Not checking the hit of virtual SL or Trail')
+                    else:
+                        self.m_LoggerHandle.info('connected to price db...Fetching the missed data')
+                        l_PriceDbCursor = l_PriceDbHandle.cursor()  # since you have got the connection grab a cursor
+                        # Fetch data till date = current date and time = current time"
+                        l_PriceDbCursor.execute(
+                            "select * from %s where (date = %s and time > %s)  or (date>%s and  date < %s) or (date = %s  and time <= %s) ;" % (self.m_strPriceTableName, l_iCrashDate,l_iCrashTime,l_iCrashDate,l_iRestartDate, l_iRestartDate,l_iRestartTime))  # read 1 line form database
+                        l_QueryResult = l_PriceDbCursor.fetchall()
+                        # closing Connection
+                        l_PriceDbCursor.close()
+                        # If u dont get data during live mode
+                        if (not l_QueryResult):
+                            # if no data, miss the trail check and bar formation
+                            self.m_LoggerHandle.info("Did not get data missed data...Not checking the hit of virtual SL or Trail ...Moving ahead..... ")
+                        else:
+                            self.m_LoggerHandle.info(
+                                'Fetched missing data...')
+                            l_iDateForPreviousTick=l_iRestartDate
+                            l_iTimeForPreviousTick=l_iRestartTime
+                            self.m_LoggerHandle.info(
+                                'Checking for the Virtual Trail/StopLossss hit...')
+                            # check if it would have hit the trailing/SL, had it been on.
+                            l_iVirtualLSLFlag=0
+                            l_iVirtualLTLFlag=0
+                            l_iVirtualSSLFlag=0
+                            l_iVirtualSTLFlag=0
+                            for l_lFetchedRow in l_QueryResult:
+                                l_fTickClose=float(l_lFetchedRow[5])
+                                # -------------------TRAILING-------------------------------------------------------
+                                # --------------Trailing long position----------------------------------------------
+                                if (self.m_iPositionInMarket == 1 and self.m_iTrailFlag == 1 and l_fTickClose >= self.m_fTrailPrice):  # trail is ON and market is going up (Follow Trail)
+                                    self.m_fTrailPrice = l_fTickClose
+                                elif (self.m_iPositionInMarket == 1 and self.m_iTrailFlag == 1 and l_fTickClose <= self.m_fTrailPrice - 0.0035 * self.m_fTrailPrice):  # trail is ON and market moved down (Trail Hit)
+                                    l_iVirtualLTLFlag=1
+                                    self.m_LoggerHandle.info(
+                                        'Virtual Trail Hit for Long Position...')
+                                    self.m_LoggerHandle.info(
+                                        'Will Exit the open trade as market opens')
+                                elif (self.m_iPositionInMarket == 1 and self.m_iTrailFlag == 0 and l_fTickClose >= self.m_fMarketEnterPrice + self.m_fMarketEnterPrice * 0.01):  # Trail  On
+                                    self.m_iTrailFlag = 1
+                                    self.m_fTrailPrice = l_fTickClose
+                                # -------------------------------------------------------------------------------------------
+                                # ---------------------Trailing Short position-------------
+                                if (self.m_iPositionInMarket == -1 and self.m_iTrailFlag == -1 and l_fTickClose <= self.m_fTrailPrice):  # trail is ON and market is going down (Follow Trail)
+                                    self.m_fTrailPrice = l_fTickClose
+                                elif(self.m_iPositionInMarket == -1 and self.m_iTrailFlag == -1 and l_fTickClose >= self.m_fTrailPrice + 0.0035 * self.m_fTrailPrice):  # trail is ON and market moved up (Trail Hit)
+                                    l_iVirtualSTLFlag=1
+                                    self.m_LoggerHandle.info(
+                                        'Virtual Trail Hit for Short Position...')
+                                    self.m_LoggerHandle.info(
+                                        'Will Exit the open trade as market opens')
+
+                                elif (self.m_iPositionInMarket == -1 and self.m_iTrailFlag == 0 and l_fTickClose <= self.m_fMarketEnterPrice - self.m_fMarketEnterPrice * 0.01):  # Trail On
+                                    self.m_iTrailFlag = -1
+                                    self.m_fTrailPrice = l_fTickClose
+
+                                # -----------------------------------------------------------------------------------------------------------------%
+                                # -------------------STOPLOSS------------------------%
+                                # ---------------for Long position-------------------%
+                                if ((self.m_iPositionInMarket == 1) and (l_fTickClose <= (self.m_fMarketEnterPrice - 0.0025 * self.m_fMarketEnterPrice))):  # Stop Loss
+                                    l_iVirtualLSLFlag=1
+                                    self.m_LoggerHandle.info('Virtual SL Hit for Long Position...')
+                                    self.m_LoggerHandle.info('Will Exit the open trade as market opens')
+
+
+                                # ---------------for short position------------------%
+                                if ((self.m_iPositionInMarket == -1) and (l_fTickClose >= (self.m_fMarketEnterPrice + 0.0025 * self.m_fMarketEnterPrice))):
+                                    l_iVirtualSSLFlag=1
+                                    self.m_LoggerHandle.info('Virtual SL Hit for Short Position...')
+                                    self.m_LoggerHandle.info('Will Exit the open trade as market opens')
+
+                                if (l_iVirtualLSLFlag or l_iVirtualLTLFlag or l_iVirtualSSLFlag or l_iVirtualSTLFlag):
+                                    self.m_iVirtualExitAfterRestart = 1
+                                    break
+
+
+                                    # ------------------------------------------------------%
+                            #if (l_iVirtualLSLFlag or l_iVirtualLTLFlag or l_iVirtualSSLFlag or l_iVirtualSTLFlag):
+                            #    l_iPositionToBeFilled=0
+                            #    l_fTempToBeFilled=0.0
+                            #    self.m_iVirtualExitAfterRestart=1
+                            #else:
+                            #l_iPositionToBeFilled=self.m_iPositionInMarket
+                            #l_fTempToBeFilled = float(self.m_iPositionInMarket)
+                            #--------------------------------------------------------------
+                            # Fill the gap with positions and OHLC bars
+                            l_iPositionToBeFilled =l_iLastPositionBeforeCrash
+                            l_fTempToBeFilled = l_iLastTempPostionBeforeCrash
+                            l_iTickNumber=0
+                            l_iTickCountMissed=0
+                            l_iTotalTicksMissed=len(l_QueryResult)
+                            self.m_LoggerHandle.info('Creating OHLC from missed data...')
+
+                            for l_lFetchedRow in l_QueryResult:
+                                l_iTickCountMissed+=1
+                                l_iTickNumber = l_iTickNumber + 1  # Increment tick number
+                                self.m_LoggerHandle.info('Tick Number is %s' % (l_iTickNumber))
+                                l_strTickDate = str(l_lFetchedRow[0])
+                                # print l_strTickDate
+                                l_strTickTime = str(l_lFetchedRow[1])
+                                # print l_strTickTime
+                                l_fTickOpen = l_lFetchedRow[2]
+                                l_fTickHigh = l_lFetchedRow[3]
+                                l_fTickLow = l_lFetchedRow[4]
+                                l_fTickClose = l_lFetchedRow[5]
+                                l_2dlTickDataMatrix[l_iTickNumber - 1][0] = l_strTickDate
+                                l_2dlTickDataMatrix[l_iTickNumber - 1][1] = l_strTickTime
+                                l_2dlTickDataMatrix[l_iTickNumber - 1][2] = l_fTickOpen
+                                l_2dlTickDataMatrix[l_iTickNumber - 1][3] = l_fTickHigh
+                                l_2dlTickDataMatrix[l_iTickNumber - 1][4] = l_fTickLow
+                                l_2dlTickDataMatrix[l_iTickNumber - 1][5] = l_fTickClose
+
+                                if (l_iTickNumber == self.m_iBarTimeInterval) or (str(l_strTickTime) == self.m_strSessionCloseTime): #or (l_iTickCountMissed == l_iTotalTicksMissed) # If BarTimeInterval ticks or Session closing Time then Create the Bar
+                                    l_strBarDate, l_strBarTime = self.CreateOHLC(l_2dlTickDataMatrix[0:l_iTickNumber][:],l_iTickNumber)  # TickNumber takes care of the fact that there can be situation of  Ticks<BarTimeInterval
+                                    l_iTickNumber = 0  # reset Tick Count for next bar
+                                    self.m_LoggerHandle.info('Tick number is reset to 0')
+                                    self.m_liPosition.append(l_iPositionToBeFilled)
+                                    self.m_afTempPosition = np.append(self.m_afTempPosition, l_fTempToBeFilled)
+                                    l_TradeDbCursor.execute(
+                                        "Insert into %s (Date, Time, Position,TempPosition) values('%s', '%s', '%s','%s');" % (
+                                        self.m_strResultTableName, str(l_strBarDate), str(l_strBarTime),
+                                        self.m_liPosition[self.m_iBarNumber - 1],
+                                        self.m_afTempPosition[self.m_iBarNumber - 1]))  # Write into DB
+                                    l_TradeDbHandle.commit()
+                                    self.m_LoggerHandle.info(
+                                        'Writing Position in Result Table for Date= %s and Time= %s' % (
+                                        l_strBarDate, l_strBarTime))
+
+                    #-----------------------------------------------------------------------------------------
+
+                    #------------------------Check status of Rina File------------------
+                    # If there is any discrepancy in Rina File and Signal Table
+
+                    self.m_LoggerHandle.info("Checking if all signals of table were present in Rina File...")
+
+                    if (self.m_iGenerateRina == 1):
+                        l_iCurrentDate = int(time.strftime("%Y%m%d")) - 19000000  # Change_C
+                        l_iCurrentTime = int(time.strftime("%H%M"))
+                        l_iTotalSignalsInRina=-2
+                        with open(self.m_strRinaFileName, 'r') as l_RinaFileHandle:
+                            l_lLastRinaRow = None
+                            for l_lLastRinaRow in csv.reader(l_RinaFileHandle):
+                                l_iTotalSignalsInRina+=1
+
+                        if l_iTotalSignalsInSignalTable <> l_iTotalSignalsInRina:
+                            if l_iTotalSignalsInRina >0:
+                                # Fetch the last row of Rina File
+                                self.m_LoggerHandle.info(
+                                    "Number of signals in table <> Signals in Rina ... Syncing the 2")
+                                self.m_LoggerHandle.info(
+                                    "Adding Signals To Rina...")
+
+                                l_iTradeNumLastInRina = int(l_lLastRinaRow[6].strip().strip('"'))
+                                l_iDateLastInRina=int(l_lLastRinaRow[1].strip().strip('"'))
+                                l_strSignalRemarkLastInRina=l_lLastRinaRow[3].strip().strip('"')
+
+
+                                if '_LE_' in  l_strSignalRemarkLastInRina.upper() or '_SE_' in  l_strSignalRemarkLastInRina.upper():
+                                    self.m_iRinaInternalFlag = 2  # Flag used internally by Write2Rina module
+                                    self.m_iTradeNum = l_iTradeNumLastInRina
+                                    if '_LE_' in l_strSignalRemarkLastInRina.upper():
+                                        self.m_strEnterType = 'buy'  # used internally by Write2Rina module
+                                    elif '_SE_' in l_strSignalRemarkLastInRina.upper():
+                                        self.m_strEnterType = 'sell'  # used internally by Write2Rina module
+                                elif '_LX_' in  l_strSignalRemarkLastInRina.upper() or '_SX_' in  l_strSignalRemarkLastInRina.upper():
+                                    self.m_iRinaInternalFlag = 1  # Flag used internally by Write2Rina module
+                                    self.m_iTradeNum = l_iTradeNumLastInRina + 1
+                                    #If Current time > than session close time, fetch todays data also
+                                if l_iCurrentTime > self.m_strSessionCloseTime:
+                                    l_TradeDbCursor.execute("Select * from %s where date  > %s;" % (self.m_strSignalTableName, l_iDateLastInRina))  # get Today's signals
+                                    self.m_LoggerHandle.info(
+                                        "Adding all signals till today")
+                                else:
+                                    # If Current time < session close time, leave todays data because it will be added at the end of session
+                                    l_TradeDbCursor.execute("Select * from %s where date  > %s and date < %s;" % (self.m_strSignalTableName, l_iDateLastInRina, l_iCurrentDate))
+                                    self.m_LoggerHandle.info(
+                                        "Adding all signals except today's..they will be added at session end...")
+                                l_SignalsRead = l_TradeDbCursor.fetchall()
+                                  # Trade number Count
+                            else:  # IF no signal has come to rina, but signals are there in Signal table
+                                self.m_LoggerHandle.info(
+                                    "Rina File is Empty...Signal table is not...syncing the two...")
+                                if l_iCurrentTime >= self.m_strSessionCloseTime:
+                                    l_TradeDbCursor.execute("Select * from %s ;" % (self.m_strSignalTableName))  # get Today's signals
+                                    self.m_LoggerHandle.info(
+                                        "Adding all signals till today")
+                                else:
+                                    # If Current time < session close time, leave todays data because it will be added at the end of session
+                                    l_TradeDbCursor.execute("Select * from %s where date < %s;" % (self.m_strSignalTableName,l_iCurrentDate))
+                                    self.m_LoggerHandle.info(
+                                        "Adding all signals except today's..they will be added at session end...")
+                                l_SignalsRead = l_TradeDbCursor.fetchall()
+                            if (l_SignalsRead):  # if we have signals
+                                self.m_LoggerHandle.info('Writing into Rina File.....')
+                                self.Write2Rina(l_SignalsRead)  # write into Rina
+
+
+
                 self.m_iRestartFlag = 0
                 #Closing Connection
                 l_TradeDbCursor.close()
-                # IN SHORT: Read 'Trading Window-1' bars from database
-                #			seek for new bar from restart point
-                #------------------End of CHANGE 2----------------------------------
+                print self.m_iPositionInMarket
+                print self.m_iTrailFlag
+                print self.m_fTrailPrice
+                #======================================================================================================================================
 
 
+            #-----------Working in Live Mode-----------------
 
             if self.m_iLiveMode:
                 # Try to connect to database
@@ -750,6 +1095,7 @@ class Trader:
                     l_iNoPriceDbConnectionFlag=1
 
                 # If u fail to connect (server is off), go to sleep
+                # If server is off, it may happen that an exception is thrown or we get nothing in db handle
                 if (l_iNoPriceDbConnectionFlag) or not(l_PriceDbHandle):
                     self.m_LoggerHandle.info('failed to connect to price db...trying again after 20 seconds')
                     time.sleep(20)
@@ -777,7 +1123,7 @@ class Trader:
                 # opening connection
                 l_PriceDbHandle = self.LoginToPriceDb()  # login into database
                 l_PriceDbCursor = l_PriceDbHandle.cursor()
-                l_PriceDbCursor.execute("select Date, Time, Open, High, Low, Close from %s where Date >='%s' and Date <='%s' LIMIT %s, 1;" % (self.m_strPriceTableName, self.m_strRunStartDate, self.m_strRunStopDate, self.m_iTotalTicks))  # read 1 line form database
+                l_PriceDbCursor.execute("select Date, Time, Open, High, Low, Close from %s where Date >=%s and Date <=%s LIMIT %s, 1;" % (self.m_strPriceTableName, self.m_strRunStartDate, self.m_strRunStopDate, self.m_iTotalTicks))  # read 1 line form database
                 l_QueryResult = l_PriceDbCursor.fetchall()
                 l_PriceDbCursor.close()
                 #closing connection
@@ -794,9 +1140,7 @@ class Trader:
             # opening connection
             l_TradeDbHandle = self.LoginToTradeDb()  # login into database
             l_TradeDbCursor= l_TradeDbHandle.cursor()
-            l_iTickNumber = l_iTickNumber + 1  # Increment tick number
-            self.m_iTotalTicks += 1  # Increment Total Tick number
-            self.m_LoggerHandle.info('Tick Number is %s' %(l_iTickNumber))
+
             l_strTickDate = str(l_QueryResult[0][0])
             #print l_strTickDate
             l_strTickTime = str(l_QueryResult[0][1])
@@ -805,6 +1149,43 @@ class Trader:
             l_fTickHigh = l_QueryResult[0][3]
             l_fTickLow = l_QueryResult[0][4]
             l_fTickClose = l_QueryResult[0][5]
+            # ------------------------------------------------------------
+            if self.m_iVirtualExitAfterRestart == 1:
+                # If it would have hit the SL/Trail, Exit NOW
+                # Also Skip this tick's count
+                self.m_LoggerHandle.info('Skipping 1 tick for bar formation...')
+                if self.m_iPositionInMarket == 1:
+                    self.m_iPositionInMarket = 0
+                    self.m_iTrailFlag = 0
+                    self.m_fTrailPrice = 0.0
+                    l_TradeDbCursor.execute(
+                        "Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (
+                            self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'sell',
+                            self.m_iShareQuantity, 'PF_LX_VirtualExit_15_001'))  # Exit Trade
+                    l_TradeDbHandle.commit()
+                    l_TradeDbCursor.close()
+                    self.m_LoggerHandle.info(
+                        'Writing into Signal Table for Date= %s & Time =%s' % (l_strTickDate, l_strTickTime))
+                    self.m_iVirtualExitAfterRestart = 0
+                    continue
+                if self.m_iPositionInMarket == -1:
+                    self.m_iPositionInMarket = 0
+                    self.m_iTrailFlag = 0
+                    self.m_fTrailPrice = 0.0
+                    l_TradeDbCursor.execute(
+                        "Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (
+                            self.m_strSignalTableName, l_strBarDate, l_strBarTime, l_fTickClose, 'buy',
+                            self.m_iShareQuantity, 'PF_SX_VirtualExit_15_001'))  # Exit Trade
+                    l_TradeDbHandle.commit()
+                    l_TradeDbCursor.close()
+                    self.m_LoggerHandle.info(
+                        'Writing into Signal Table for Date= %s & Time =%s' % (l_strTickDate, l_strTickTime))
+                    self.m_iVirtualExitAfterRestart = 0
+                    continue
+
+            l_iTickNumber = l_iTickNumber + 1  # Increment tick number
+            self.m_iTotalTicks += 1  # Increment Total Tick number
+            self.m_LoggerHandle.info('Tick Number is %s' % (l_iTickNumber))
             l_2dlTickDataMatrix[l_iTickNumber - 1][0] = l_strTickDate
             l_2dlTickDataMatrix[l_iTickNumber - 1][1] = l_strTickTime
             l_2dlTickDataMatrix[l_iTickNumber - 1][2] = l_fTickOpen
@@ -816,6 +1197,8 @@ class Trader:
                 l_strBarDate, l_strBarTime = self.CreateOHLC(l_2dlTickDataMatrix[0:l_iTickNumber][:],l_iTickNumber)  # TickNumber takes care of the fact that there can be situation of  Ticks<BarTimeInterval
                 l_iTickNumber = 0  # reset Tick Count for next bar
                 self.m_LoggerHandle.info('Tick number is reset to 0')
+                # Exiting the virtually set trade
+
                 if self.m_iBarNumber < self.m_iTradingWindowSize:
                     self.m_liPosition.append(0)
                     self.m_afTempPosition=np.append(self.m_afTempPosition,0.0)
@@ -827,7 +1210,8 @@ class Trader:
                     l_TradeDbCursor.execute("Insert into %s (Date, Time, Position,TempPosition) values('%s', '%s', '%s','%s');" % (self.m_strResultTableName, str(l_strBarDate), str(l_strBarTime),self.m_liPosition[self.m_iBarNumber - 1],self.m_afTempPosition[self.m_iBarNumber - 1]))  # Write into DB
                     l_TradeDbHandle.commit()
                     self.m_LoggerHandle.info('Writing Position in Result Table for Date= %s and Time= %s' %(l_strBarDate, l_strBarTime))
-
+                #print "BarNumber", self.m_iBarNumber
+                #print "Position", self.m_liPosition[self.m_iBarNumber - 1]
                 self.SignalGeneration()
 
             #-------------------TRAILING-------------------------------------------------------
@@ -838,7 +1222,7 @@ class Trader:
                 self.m_iPositionInMarket = 0
                 self.m_iTrailFlag = 0
                 self.m_fTrailPrice = 0.0
-                l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'sell',self.m_iShareQuantity, 'Long_TL_Hit'))  #Exit Trade
+                l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'sell',self.m_iShareQuantity, 'PF_LX_LTL_15_001'))  #Exit Trade
                 l_TradeDbHandle.commit()
                 self.m_LoggerHandle.info('Writing into Signal Table for Date= %s & Time =%s' %(l_strTickDate,l_strTickTime))
 
@@ -853,7 +1237,7 @@ class Trader:
                     self.m_iPositionInMarket = 0
                     self.m_iTrailFlag = 0
                     self.m_fTrailPrice = 0.0
-                    l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'buy',self.m_iShareQuantity, 'Short_TL_Hit'))  # Exit Trade
+                    l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'buy',self.m_iShareQuantity, 'PF_SX_STL_15_001'))  # Exit Trade
                     l_TradeDbHandle.commit()
                     self.m_LoggerHandle.info('Writing into Signal Table for Date= %s & Time =%s' %(l_strTickDate,l_strTickTime))
 
@@ -868,7 +1252,7 @@ class Trader:
                 self.m_iPositionInMarket = 0
                 self.m_iTrailFlag = 0
                 self.m_fTrailPrice = 0.0
-                l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'sell',self.m_iShareQuantity, 'Long_SL_Hit'))  # Exit Trade
+                l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'sell',self.m_iShareQuantity, 'PF_LX_LSL_15_001'))  # Exit Trade
                 l_TradeDbHandle.commit()
                 self.m_LoggerHandle.info('Writing into Signal Table for Date= %s & Time =%s' %(l_strTickDate,l_strTickTime))
 
@@ -877,14 +1261,14 @@ class Trader:
                 self.m_iPositionInMarket = 0
                 self.m_iTrailFlag = 0
                 self.m_fTrailPrice = 0.0
-                l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'buy',self.m_iShareQuantity, 'Short_SL_Hit'))  # Exit Trade
+                l_TradeDbCursor.execute("Insert into %s (Date, Time, Price, Tradetype, Qty, Remarks) values('%s', '%s', '%s', '%s', '%s', '%s');" % (self.m_strSignalTableName, l_strTickDate, l_strTickTime, l_fTickClose, 'buy',self.m_iShareQuantity, 'PF_SX_SSL_15_001'))  # Exit Trade
                 l_TradeDbHandle.commit()
                 self.m_LoggerHandle.info('Writing into Signal Table for Date= %s & Time =%s' %(l_strTickDate,l_strTickTime))
 
             #------------------------------------------------------%
             if (l_strTickTime == self.m_strSessionCloseTime):  # reached end of the day
                 if (self.m_iGenerateRina == 1):
-                    l_TradeDbCursor.execute("Select * from %s where date  = '%s';" % (self.m_strSignalTableName, str(l_strTickDate)))  # get Today's signals
+                    l_TradeDbCursor.execute("Select * from %s where date  = %s;" % (self.m_strSignalTableName, int(l_strTickDate)))  # get Today's signals
                     l_SignalsRead = l_TradeDbCursor.fetchall()
                     if (l_SignalsRead):  # if we have signals
                         self.m_LoggerHandle.info('Writing into Rina File for Date= %s & Time =%s' %(l_strTickDate,l_strTickTime))
